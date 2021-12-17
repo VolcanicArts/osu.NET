@@ -31,7 +31,10 @@ namespace volcanicarts.osu.NET.Structures
         public int PlayCount { get; private set; }
 
         [JsonProperty("preview_url")]
-        public string PreviewURL { get; private set; }
+        private string _previewUrl;
+
+        [JsonIgnore]
+        public string PreviewUrl => $"https:{_previewUrl}";
 
         [JsonProperty("source")]
         public string Source { get; private set; }
