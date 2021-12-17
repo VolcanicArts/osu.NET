@@ -44,7 +44,7 @@ namespace volcanicarts.osu.NET.Client
                 throw new InvalidOperationException("Please call LoginAsync before making a request");
 
             var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
-            return await beatmapRequest.QueueAsync(_httpClient);
+            return await beatmapRequest.QueueAsync(this, _httpClient);
         }
 
         public async Task<BeatmapCompact[]> GetBeatmapsAsync(string[] beatmapIds)
@@ -53,7 +53,7 @@ namespace volcanicarts.osu.NET.Client
                 throw new InvalidOperationException("Please call LoginAsync before making a request");
 
             var beatmapsRequest = new BeatmapsRequest(_loginData, beatmapIds);
-            return (await beatmapsRequest.QueueAsync(_httpClient)).Beatmaps;
+            return (await beatmapsRequest.QueueAsync(this, _httpClient)).Beatmaps;
         }
 
         public async Task<Beatmapset> GetBeatmapsetAsync(string beatmapsetId)
@@ -62,7 +62,7 @@ namespace volcanicarts.osu.NET.Client
                 throw new InvalidOperationException("Please call LoginAsync before making a request");
 
             var beatmapsetRequest = new BeatmapsetRequest(_loginData, beatmapsetId);
-            return await beatmapsetRequest.QueueAsync(_httpClient);
+            return await beatmapsetRequest.QueueAsync(this, _httpClient);
         }
     }
 }

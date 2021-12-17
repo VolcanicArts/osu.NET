@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures
 {
-    public class BeatmapCompactArray
+    public class BeatmapCompactArray : BaseStructure
     {
         [JsonProperty("beatmaps")]
         public BeatmapCompact[] Beatmaps { get; private set; }
     }
 
-    public class BeatmapCompact
+    public class BeatmapCompact : BaseStructure
     {
         [JsonProperty("mode")]
         private string _mode;
@@ -41,6 +42,8 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("version")]
         public string Version { get; private set; }
+
+        public Task<Beatmapset> GetBeatmapsetAsync() => OsuClient.GetBeatmapsetAsync(BeatmapsetId.ToString());
     }
 
     public class Beatmap : BeatmapCompact

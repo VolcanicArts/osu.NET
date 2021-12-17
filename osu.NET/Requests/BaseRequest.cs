@@ -3,10 +3,11 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Client;
+using volcanicarts.osu.NET.Structures;
 
 namespace volcanicarts.osu.NET.Requests
 {
-    public class BaseRequest<T>
+    public class BaseRequest<T> where T : BaseStructure
     {
         private readonly OsuClientLoginData _loginData;
 
@@ -17,7 +18,7 @@ namespace volcanicarts.osu.NET.Requests
 
         protected virtual string RequestUrl => null;
 
-        public async Task<T> QueueAsync(HttpClient httpClient)
+        public async Task<T> QueueAsync(OsuClient osuClient, HttpClient httpClient)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, RequestUrl);
             request.Headers.Authorization = new AuthenticationHeaderValue(_loginData.TokenType, _loginData.AccessToken);
@@ -25,7 +26,9 @@ namespace volcanicarts.osu.NET.Requests
             var response = await httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var responseAsString = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(responseAsString);
+            var result = JsonConvert.DeserializeObject<T>(responseAsString);
+            result.OsuClient = osuClient;
+            return result;
         }
     }
 }

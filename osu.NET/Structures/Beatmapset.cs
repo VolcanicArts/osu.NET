@@ -4,7 +4,7 @@ using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures
 {
-     public class BeatmapsetCompact
+     public class BeatmapsetCompact : BaseStructure
     {
         [JsonProperty("artist")]
         public string Artist { get; private set; }

@@ -2,7 +2,7 @@
 
 namespace volcanicarts.osu.NET.Structures
 {
-    public class Covers
+    public class Covers : BaseStructure
     {
         [JsonProperty("cover")]
         public string Cover { get; private set; }
