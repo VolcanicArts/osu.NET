@@ -4,6 +4,12 @@ using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures
 {
+    public class BeatmapCompactArray
+    {
+        [JsonProperty("beatmaps")]
+        public BeatmapCompact[] Beatmaps { get; private set; }
+    }
+
     public class BeatmapCompact
     {
         [JsonProperty("mode")]

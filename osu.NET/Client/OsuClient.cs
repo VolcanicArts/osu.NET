@@ -37,7 +37,7 @@ namespace volcanicarts.osu.NET.Client
             var clientSerialized = JsonConvert.SerializeObject(_osuClientCredentials);
             return new StringContent(clientSerialized, Encoding.UTF8, "application/json");
         }
-        
+
         public async Task<Beatmap> GetBeatmapAsync(string beatmapId)
         {
             if (_loginData == null)
@@ -46,7 +46,16 @@ namespace volcanicarts.osu.NET.Client
             var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
             return await beatmapRequest.QueueAsync(_httpClient);
         }
-        
+
+        public async Task<BeatmapCompact[]> GetBeatmapsAsync(string[] beatmapIds)
+        {
+            if (_loginData == null)
+                throw new InvalidOperationException("Please call LoginAsync before making a request");
+
+            var beatmapsRequest = new BeatmapsRequest(_loginData, beatmapIds);
+            return (await beatmapsRequest.QueueAsync(_httpClient)).Beatmaps;
+        }
+
         public async Task<Beatmapset> GetBeatmapsetAsync(string beatmapsetId)
         {
             if (_loginData == null)
