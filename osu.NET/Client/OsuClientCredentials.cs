@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace volcanicarts.osu.NET.Client
 {
@@ -18,6 +19,8 @@ namespace volcanicarts.osu.NET.Client
 
         public OsuClientCredentials(string clientId, string clientSecret)
         {
+            if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
+                throw new ArgumentException("Please set a clientId and clientSecret");
             ClientId = clientId;
             ClientSecret = clientSecret;
         }
