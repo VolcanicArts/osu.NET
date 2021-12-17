@@ -1,19 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
+    <PropertyGroup Label="Project">
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>volcanicarts.osu.NET</RootNamespace>
-        <PackageVersion>0.0.1</PackageVersion>
-        <Title>osu.NET</Title>
+        <PackageVersion>2021.1217.0</PackageVersion>
+        <AssemblyTitle>osu.NET</AssemblyTitle>
+		<AssemblyName>osu.NET</AssemblyName>
         <Authors>VolcanicArts</Authors>
         <Description>A .NET class library wrapping the osu!api v2</Description>
-        <PackageProjectUrl></PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/volcanicarts/osu.NET/blob/master/LICENCE</PackageLicenseUrl>
+		<OutputType>Library</OutputType>
         <RepositoryUrl>https://github.com/volcanicarts/osu.NET</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>osu api wrapper</PackageTags>
-        <PackageId>volcanicarts.osu.NET</PackageId>
     </PropertyGroup>
+	<PropertyGroup Label="Nuget">
+		<Title>osu.NET</Title>
+		<PackageTags>osu api wrapper</PackageTags>
+        <PackageId>volcanicarts.osu.NET</PackageId>
+	</PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
