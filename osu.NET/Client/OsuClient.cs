@@ -46,5 +46,14 @@ namespace volcanicarts.osu.NET.Client
             var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
             return await beatmapRequest.QueueAsync(_httpClient);
         }
+        
+        public async Task<Beatmapset> GetBeatmapsetAsync(string beatmapsetId)
+        {
+            if (_loginData == null)
+                throw new InvalidOperationException("Please call LoginAsync before making a request");
+
+            var beatmapsetRequest = new BeatmapsetRequest(_loginData, beatmapsetId);
+            return await beatmapsetRequest.QueueAsync(_httpClient);
+        }
     }
 }

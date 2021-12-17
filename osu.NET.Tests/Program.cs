@@ -18,9 +18,8 @@ namespace volcanicarts.osu.NET.Tests
 
             await _osuClient.LoginAsync();
             var beatmap = await _osuClient.GetBeatmapAsync("221777");
-            Console.WriteLine(beatmap.Url);
-            Console.WriteLine(beatmap.Ranked);
-            Console.WriteLine(beatmap.BeatmapsetId);
+            var beatmapset = await _osuClient.GetBeatmapsetAsync(beatmap.BeatmapsetId.ToString());
+            Console.WriteLine(beatmapset.Title);
         }
     }
 }
