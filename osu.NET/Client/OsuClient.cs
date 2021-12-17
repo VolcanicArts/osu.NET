@@ -1,8 +1,11 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Exceptions;
+using volcanicarts.osu.NET.Requests;
+using volcanicarts.osu.NET.Structures;
 using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Client
@@ -33,6 +36,15 @@ namespace volcanicarts.osu.NET.Client
             if (_osuClientCredentials == null) throw new InvalidOsuClientCredentialsException();
             var clientSerialized = JsonConvert.SerializeObject(_osuClientCredentials);
             return new StringContent(clientSerialized, Encoding.UTF8, "application/json");
+        }
+        
+        public async Task<Beatmap> GetBeatmapAsync(string beatmapId)
+        {
+            if (_loginData == null)
+                throw new InvalidOperationException("Please call LoginAsync before making a request");
+
+            var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
+            return await beatmapRequest.QueueAsync(_httpClient);
         }
     }
 }

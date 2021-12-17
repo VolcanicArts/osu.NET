@@ -16,8 +16,11 @@ namespace volcanicarts.osu.NET.Tests
             var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
             _osuClient = new OsuClient(osuClientCredentials);
 
-            var osuClientLoginData = await _osuClient.LoginAsync();
-            Console.WriteLine(osuClientLoginData.AccessToken);
+            await _osuClient.LoginAsync();
+            var beatmap = await _osuClient.GetBeatmapAsync("221777");
+            Console.WriteLine(beatmap.Url);
+            Console.WriteLine(beatmap.Ranked);
+            Console.WriteLine(beatmap.BeatmapsetId);
         }
     }
 }
