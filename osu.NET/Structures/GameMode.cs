@@ -2,9 +2,9 @@
 {
     public enum GameMode
     {
-        Fruits,
-        Mania,
-        Osu,
-        Taiko
+        fruits,
+        mania,
+        osu,
+        taiko
     }
 }
