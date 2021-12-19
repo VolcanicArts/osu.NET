@@ -36,10 +36,12 @@ namespace volcanicarts.osu.NET.Structures
     {
         XH,
         SH,
-        AH,
-        BH,
-        CH,
-        DH
+        X,
+        S,
+        A,
+        B,
+        C,
+        D
     }
     
     public class BeatmapScore
