@@ -31,6 +31,16 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("count_miss")]
         public int CountMiss;
     }
+
+    public enum ScoreRank
+    {
+        XH,
+        SH,
+        AH,
+        BH,
+        CH,
+        DH
+    }
     
     public class BeatmapScore
     {
@@ -62,9 +72,8 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("statistics")]
         public ScoreStatistics Statistics;
         
-        // TODO: Decode rank into enum
         [JsonProperty("rank")]
-        public string Rank;
+        public ScoreRank Rank;
 
         [JsonProperty("created_at")]
         private string _createdAt;
