@@ -20,4 +20,7 @@ Bare in mind that even if an endpoint is supported it might not be fully impleme
 
 ### Endpoints
 - Get beatmap
+- Get beatmaps
 - Get beatmapset
+- Get beatmap scores
+- Get rankings
