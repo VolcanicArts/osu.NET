@@ -1,10 +1,19 @@
-﻿namespace volcanicarts.osu.NET.Structures
+﻿using Newtonsoft.Json;
+
+namespace volcanicarts.osu.NET.Structures
 {
     public enum GameMode
     {
-        fruits,
-        mania,
-        osu,
-        taiko
+        [JsonProperty("fruits")]
+        Fruits,
+
+        [JsonProperty("mania")]
+        Mania,
+
+        [JsonProperty("osu")]
+        Osu,
+
+        [JsonProperty("taiko")]
+        Taiko
     }
 }

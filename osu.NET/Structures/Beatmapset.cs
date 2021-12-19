@@ -1,11 +1,15 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures
 {
-     public class BeatmapsetCompact : BaseStructure
+    public class BeatmapsetCompact : BaseStructure
     {
+        [JsonProperty("preview_url")]
+        private string _previewUrl;
+
         [JsonProperty("artist")]
         public string Artist { get; private set; }
 
@@ -29,9 +33,6 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("play_count")]
         public int PlayCount { get; private set; }
-
-        [JsonProperty("preview_url")]
-        private string _previewUrl;
 
         [JsonIgnore]
         public string PreviewUrl => $"https:{_previewUrl}";
@@ -63,14 +64,14 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("last_updated")]
         private string _lastUpdated;
 
-        [JsonProperty("ranked")]
-        private int _ranked;
-
         [JsonProperty("ranked_date")]
         private string? _rankedDate;
 
         [JsonProperty("submitted_date")]
         private string? _submittedDate;
+
+        [JsonProperty("ranked")]
+        public RankStatus Ranked;
 
         [JsonProperty("storyboard")]
         public bool Storyboard;
@@ -116,9 +117,6 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("nominations.required")]
         public int RequiredNominations { get; private set; }
-
-        [JsonIgnore]
-        public RankStatus Ranked => (RankStatus) _ranked;
 
         [JsonIgnore]
         public DateTime? RankedDate => Parser.ParseOsuTimestampNullable(_rankedDate);

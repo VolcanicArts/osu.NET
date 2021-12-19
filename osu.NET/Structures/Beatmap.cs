@@ -1,6 +1,8 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures
@@ -14,10 +16,10 @@ namespace volcanicarts.osu.NET.Structures
     public class BeatmapCompact : BaseStructure
     {
         [JsonProperty("mode")]
-        private string _mode;
+        public GameMode Mode;
 
         [JsonProperty("status")]
-        private string _status;
+        public RankStatus Status;
 
         [JsonProperty("beatmapset_id")]
         public int BeatmapsetId { get; private set; }
@@ -27,12 +29,6 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("id")]
         public int Id { get; private set; }
-
-        [JsonIgnore]
-        public GameMode Mode => (GameMode) Enum.Parse(typeof(GameMode), _mode);
-
-        [JsonIgnore]
-        public RankStatus Status => (RankStatus) int.Parse(_status);
 
         [JsonProperty("total_length")]
         public int TotalLength { get; private set; }
@@ -52,7 +48,7 @@ namespace volcanicarts.osu.NET.Structures
         private string? _deletedAt;
 
         [JsonProperty("ranked")]
-        private int _ranked;
+        public RankStatus Ranked;
 
         [JsonProperty("url")]
         public string Url { get; private set; }
@@ -104,8 +100,5 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("playcount")]
         public int PlayCount { get; private set; }
-
-        [JsonIgnore]
-        public RankStatus Ranked => (RankStatus) _ranked;
     }
 }
