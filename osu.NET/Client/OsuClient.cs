@@ -73,5 +73,14 @@ namespace volcanicarts.osu.NET.Client
             var beatmapScoresRequest = new BeatmapScoresRequest(_loginData, beatmapId, gameMode);
             return (await beatmapScoresRequest.QueueAsync(this, _httpClient)).Scores;
         }
+
+        public async Task<Rankings> GetRankingsAsync(GameMode gameMode, RankingType rankingType)
+        {
+            if (_loginData == null)
+                throw new InvalidOperationException("Please call LoginAsync before making a request");
+
+            var rankingsRequest = new RankingsRequest(_loginData, gameMode, rankingType);
+            return await rankingsRequest.QueueAsync(this, _httpClient);
+        }
     }
 }
