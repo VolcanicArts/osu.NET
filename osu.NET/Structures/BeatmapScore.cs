@@ -94,7 +94,8 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("replay")]
         public bool Replay;
-        
-        // TODO: Add user
+
+        [JsonProperty("user")]
+        public UserCompact User;
     }
 }
