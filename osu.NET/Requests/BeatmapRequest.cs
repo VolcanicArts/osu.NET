@@ -7,15 +7,13 @@ namespace volcanicarts.osu.NET.Requests
 {
     public class BeatmapRequest : BaseRequest<Beatmap>
     {
-        [JsonProperty("id")]
-        public string BeatmapId;
+        private readonly string _beatmapId;
 
         public BeatmapRequest(OsuClientLoginData loginData, string beatmapId) : base(loginData)
         {
-            BeatmapId = beatmapId;
+            _beatmapId = beatmapId;
         }
-
-        [JsonIgnore]
-        protected override string RequestUrl => $"{Endpoints.Api}/beatmaps/{BeatmapId}";
+        
+        protected override string RequestUrl => $"{Endpoints.Api}/beatmaps/{_beatmapId}";
     }
 }
