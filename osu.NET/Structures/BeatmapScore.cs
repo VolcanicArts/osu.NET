@@ -52,10 +52,9 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("accuracy")]
         public double Accuracy;
-
-        // TODO: Decode mods into enum
+        
         [JsonProperty("mods")]
-        public string[] Mods;
+        public Mods[] Mods;
 
         [JsonProperty("score")]
         public int Score;
