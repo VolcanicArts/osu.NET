@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace volcanicarts.osu.NET.Structures
+﻿namespace volcanicarts.osu.NET.Structures
 {
     public enum Mods
     {

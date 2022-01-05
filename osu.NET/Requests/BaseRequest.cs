@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
-using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Requests
 {
@@ -36,7 +35,7 @@ namespace volcanicarts.osu.NET.Requests
             return result;
         }
 
-        public static string ConstructUrl(string url, List<KeyValuePair<string, string>> parameters)
+        private static string ConstructUrl(string url, IReadOnlyList<KeyValuePair<string, string>> parameters)
         {
             var builder = new StringBuilder($"{url}?");
             for (var i = 0; i < parameters.Count; i++)

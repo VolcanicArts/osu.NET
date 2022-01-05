@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 using volcanicarts.osu.NET.Util;

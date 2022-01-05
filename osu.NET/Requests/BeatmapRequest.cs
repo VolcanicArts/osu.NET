@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using volcanicarts.osu.NET.Client;
+﻿using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 using volcanicarts.osu.NET.Util;
 
@@ -13,7 +12,7 @@ namespace volcanicarts.osu.NET.Requests
         {
             _beatmapId = beatmapId;
         }
-        
+
         protected override string RequestUrl => $"{Endpoints.Api}/beatmaps/{_beatmapId}";
     }
 }

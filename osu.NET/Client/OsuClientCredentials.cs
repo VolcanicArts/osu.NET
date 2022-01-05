@@ -12,11 +12,11 @@ namespace volcanicarts.osu.NET.Client
         [JsonProperty("scope")]
         [NotNull]
         public const string Scope = "public";
-
+        
         [JsonProperty("client_id")]
         [NotNull]
         public string ClientId { get; private set; }
-        
+
         [JsonProperty("client_secret")]
         [NotNull]
         public string ClientSecret { get; private set; }
