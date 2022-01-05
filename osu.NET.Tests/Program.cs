@@ -10,8 +10,8 @@ namespace volcanicarts.osu.NET.Tests
 
         private static async Task Main(string[] args)
         {
-            const string clientId = "";
-            const string clientSecret = "";
+            var clientId = Environment.GetEnvironmentVariable("clientId");
+            var clientSecret = Environment.GetEnvironmentVariable("clientSecret");
 
             var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
             _osuClient = new OsuClient(osuClientCredentials);
