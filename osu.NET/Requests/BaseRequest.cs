@@ -31,6 +31,7 @@ namespace volcanicarts.osu.NET.Requests
             response.EnsureSuccessStatusCode();
             var responseAsString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(responseAsString);
+            if (result == null) return null;
             result.OsuClient = osuClient;
             return result;
         }
