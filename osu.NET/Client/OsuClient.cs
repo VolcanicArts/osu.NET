@@ -22,13 +22,12 @@ namespace volcanicarts.osu.NET.Client
             _osuClientCredentials = osuClientCredentials;
         }
 
-        public async Task<OsuClientLoginData> LoginAsync()
+        public async Task LoginAsync()
         {
             var requestBody = CreateRequestBodyForLogin();
             var responseMessage = await _httpClient.PostAsync(Endpoints.Token, requestBody);
             var response = await responseMessage.Content.ReadAsStringAsync();
             _loginData = JsonConvert.DeserializeObject<OsuClientLoginData>(response);
-            return _loginData;
         }
 
         private StringContent CreateRequestBodyForLogin()
