@@ -12,10 +12,10 @@ namespace volcanicarts.osu.NET.Client
         public const string Scope = "public";
 
         [JsonProperty("client_id")]
-        public string ClientId;
+        public string ClientId { get; private set; }
 
         [JsonProperty("client_secret")]
-        public string ClientSecret;
+        public string ClientSecret { get; private set; }
 
         public OsuClientCredentials([NotNull] string clientId, [NotNull] string clientSecret)
         {
