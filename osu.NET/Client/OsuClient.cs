@@ -37,47 +37,43 @@ namespace volcanicarts.osu.NET.Client
             return new StringContent(clientSerialized, Encoding.UTF8, "application/json");
         }
 
-        public async Task<Beatmap> GetBeatmapAsync(string beatmapId)
+        private void CheckLoginData()
         {
             if (_loginData == null)
                 throw new InvalidOperationException("Please call LoginAsync before making a request");
+        }
 
+        public async Task<Beatmap> GetBeatmapAsync(string beatmapId)
+        {
+            CheckLoginData();
             var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
             return await beatmapRequest.QueueAsync(this, _httpClient);
         }
 
         public async Task<BeatmapCompact[]> GetBeatmapsAsync(string[] beatmapIds)
         {
-            if (_loginData == null)
-                throw new InvalidOperationException("Please call LoginAsync before making a request");
-
+            CheckLoginData();
             var beatmapsRequest = new BeatmapsRequest(_loginData, beatmapIds);
             return (await beatmapsRequest.QueueAsync(this, _httpClient)).Beatmaps;
         }
 
         public async Task<Beatmapset> GetBeatmapsetAsync(string beatmapsetId)
         {
-            if (_loginData == null)
-                throw new InvalidOperationException("Please call LoginAsync before making a request");
-
+            CheckLoginData();
             var beatmapsetRequest = new BeatmapsetRequest(_loginData, beatmapsetId);
             return await beatmapsetRequest.QueueAsync(this, _httpClient);
         }
 
         public async Task<BeatmapScore[]> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
         {
-            if (_loginData == null)
-                throw new InvalidOperationException("Please call LoginAsync before making a request");
-
+            CheckLoginData();
             var beatmapScoresRequest = new BeatmapScoresRequest(_loginData, beatmapId, gameMode);
             return (await beatmapScoresRequest.QueueAsync(this, _httpClient)).Scores;
         }
 
         public async Task<Rankings> GetRankingsAsync(GameMode gameMode, RankingType rankingType)
         {
-            if (_loginData == null)
-                throw new InvalidOperationException("Please call LoginAsync before making a request");
-
+            CheckLoginData();
             var rankingsRequest = new RankingsRequest(_loginData, gameMode, rankingType);
             return await rankingsRequest.QueueAsync(this, _httpClient);
         }
