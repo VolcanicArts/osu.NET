@@ -7,10 +7,7 @@ namespace volcanicarts.osu.NET.Structures
     public class Spotlight
     {
         [JsonProperty("end_date")]
-        private string _endDate;
-
-        [JsonProperty("start_date")]
-        private string _startDate;
+        public string EndDate;
 
         [JsonProperty("id")]
         public long Id;
@@ -24,13 +21,16 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("participant_count")]
         public int ParticipantCount;
 
+        [JsonProperty("start_date")]
+        public string StartDate;
+
         [JsonProperty("type")]
         public string Type;
 
         [JsonIgnore]
-        public DateTime EndDate => Parser.ParseOsuTimestamp(_endDate);
+        public DateTime EndDateDateTime => Parser.ParseOsuTimestamp(EndDate);
 
         [JsonIgnore]
-        public DateTime StartDate => Parser.ParseOsuTimestamp(_startDate);
+        public DateTime StartDateDateTime => Parser.ParseOsuTimestamp(StartDate);
     }
 }

@@ -52,9 +52,6 @@ namespace volcanicarts.osu.NET.Structures
 
     public class UserCompact
     {
-        [JsonProperty("last_visit")]
-        private string _lastVisit;
-
         [JsonProperty("avatar_url")]
         public string AvatarUrl;
 
@@ -85,6 +82,9 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("is_supporter")]
         public bool IsSupporter;
 
+        [JsonProperty("last_visit")]
+        public string LastVisit;
+
         [JsonProperty("pm_friends_only")]
         public bool PmFriendsOnly;
 
@@ -95,14 +95,11 @@ namespace volcanicarts.osu.NET.Structures
         public string Username;
 
         [JsonIgnore]
-        public DateTime LastVisit => Parser.ParseOsuTimestamp(_lastVisit);
+        public DateTime LastVisitDateTime => Parser.ParseOsuTimestamp(LastVisit);
     }
 
     public class User : UserCompact
     {
-        [JsonProperty("join_date")]
-        private string _joinDate;
-
         [JsonProperty("discord")]
         public string Discord;
 
@@ -111,6 +108,9 @@ namespace volcanicarts.osu.NET.Structures
 
         [JsonProperty("interests")]
         public string? Interests;
+
+        [JsonProperty("join_date")]
+        public string JoinDate;
 
         [JsonProperty("kudosu")]
         public Kudosu? Kudosu;
@@ -152,6 +152,6 @@ namespace volcanicarts.osu.NET.Structures
         public string? Website;
 
         [JsonIgnore]
-        public DateTime JoinDate => Parser.ParseOsuTimestamp(_joinDate);
+        public DateTime JoinDateDateTime => Parser.ParseOsuTimestamp(JoinDate);
     }
 }

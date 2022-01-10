@@ -7,121 +7,125 @@ namespace volcanicarts.osu.NET.Structures
 {
     public class BeatmapsetCompact : BaseStructure
     {
-        [JsonProperty("preview_url")]
+        [JsonIgnore]
         private string _previewUrl;
 
         [JsonProperty("artist")]
-        public string Artist { get; private set; }
+        public string Artist;
 
         [JsonProperty("artist_unicode")]
-        public string ArtistUnicode { get; private set; }
-
-        [JsonProperty("covers")]
-        public Covers Covers { get; private set; }
-
-        [JsonProperty("creator")]
-        public string Creator { get; private set; }
-
-        [JsonProperty("favourite_count")]
-        public int FavouriteCount { get; private set; }
-
-        [JsonProperty("id")]
-        public int Id { get; private set; }
-
-        [JsonProperty("nsfw")]
-        public bool Nsfw { get; private set; }
-
-        [JsonProperty("play_count")]
-        public int PlayCount { get; private set; }
-
-        [JsonIgnore]
-        public string PreviewUrl => $"https:{_previewUrl}";
-
-        [JsonProperty("source")]
-        public string Source { get; private set; }
-
-        [JsonProperty("title")]
-        public string Title { get; private set; }
-
-        [JsonProperty("title_unicode")]
-        public string TitleUnicode { get; private set; }
-
-        [JsonProperty("user_id")]
-        public int UserId { get; private set; }
-
-        [JsonProperty("video")]
-        public bool Video { get; private set; }
+        public string ArtistUnicode;
 
         [JsonProperty("beatmaps")]
-        public Beatmap[] Beatmaps { get; private set; }
+        public Beatmap[] Beatmaps;
+
+        [JsonProperty("covers")]
+        public Covers Covers;
+
+        [JsonProperty("creator")]
+        public string Creator;
+
+        [JsonProperty("favourite_count")]
+        public int FavouriteCount;
 
         [JsonProperty("has_favourited")]
-        public bool HasFavourited { get; private set; }
+        public bool HasFavourited;
+
+        [JsonProperty("id")]
+        public int Id;
+
+        [JsonProperty("nsfw")]
+        public bool Nsfw;
+
+        [JsonProperty("play_count")]
+        public int PlayCount;
+
+        [JsonProperty("source")]
+        public string Source;
+
+        [JsonProperty("title")]
+        public string Title;
+
+        [JsonProperty("title_unicode")]
+        public string TitleUnicode;
+
+        [JsonProperty("user_id")]
+        public int UserId;
+
+        [JsonProperty("video")]
+        public bool Video;
+
+        [JsonProperty("preview_url")]
+        public string PreviewUrl
+        {
+            get => $"https:{_previewUrl}";
+            set => _previewUrl = value;
+        }
     }
 
     public class Beatmapset : BeatmapsetCompact
     {
+        [JsonProperty("bpm")]
+        public float Bpm;
+
+        [JsonProperty("can_be_hyped")]
+        public bool CanBeHyped;
+
+        [JsonProperty("hype.current")]
+        public int CurrentHype;
+
+        [JsonProperty("nominations.current")]
+        public int CurrentNominations;
+
+        [JsonProperty("discussion_enabled")]
+        public bool DiscussionEnabled;
+
+        [JsonProperty("discussion_locked")]
+        public bool DiscussionLocked;
+
+        [JsonProperty("availability.download_disabled")]
+        public bool IsDownloadDisabled;
+
+        [JsonProperty("is_scoreable")]
+        public bool IsScoreable;
+
         [JsonProperty("last_updated")]
-        private string _lastUpdated;
+        public string LastUpdated;
 
-        [JsonProperty("ranked_date")]
-        private string? _rankedDate;
+        [JsonProperty("legacy_thread_url")]
+        public string? LegacyThreadUrl;
 
-        [JsonProperty("submitted_date")]
-        private string? _submittedDate;
+        [JsonProperty("availability.more_information")]
+        public string? MoreInformation;
 
         [JsonProperty("ranked")]
         public RankStatus Ranked;
 
+        [JsonProperty("ranked_date")]
+        public string? RankedDate;
+
+        [JsonProperty("hype.required")]
+        public int RequiredHype;
+
+        [JsonProperty("nominations.required")]
+        public int RequiredNominations;
+
         [JsonProperty("storyboard")]
         public bool Storyboard;
+
+        [JsonProperty("submitted_date")]
+        public string? SubmittedDate;
 
         [JsonProperty("tags")]
         public string Tags;
 
-        [JsonProperty("availability.download_disabled")]
-        public bool IsDownloadDisabled { get; private set; }
-
-        [JsonProperty("availability.more_information")]
-        public string? MoreInformation { get; private set; }
-
-        [JsonProperty("bpm")]
-        public float Bpm { get; private set; }
-
-        [JsonProperty("can_be_hyped")]
-        public bool CanBeHyped { get; private set; }
-
-        [JsonProperty("discussion_enabled")]
-        public bool DiscussionEnabled { get; private set; }
-
-        [JsonProperty("discussion_locked")]
-        public bool DiscussionLocked { get; private set; }
-
-        [JsonProperty("hype.current")]
-        public int CurrentHype { get; private set; }
-
-        [JsonProperty("hype.required")]
-        public int RequiredHype { get; private set; }
-
-        [JsonProperty("is_scoreable")]
-        public bool IsScoreable { get; private set; }
+        [JsonIgnore]
+        public DateTime LastUpdatedDateTime => Parser.ParseOsuTimestamp(LastUpdated);
 
         [JsonIgnore]
-        public DateTime LastUpdated => Parser.ParseOsuTimestamp(_lastUpdated);
-
-        [JsonProperty("legacy_thread_url")]
-        public string? LegacyThreadUrl { get; private set; }
-
-        [JsonProperty("nominations.current")]
-        public int CurrentNominations { get; private set; }
-
-        [JsonProperty("nominations.required")]
-        public int RequiredNominations { get; private set; }
+        public DateTime? RankedDateDateTime => Parser.ParseOsuTimestampNullable(RankedDate);
 
         [JsonIgnore]
-        public DateTime? RankedDate => Parser.ParseOsuTimestampNullable(_rankedDate);
-
-        [JsonIgnore]
-        public DateTime? SubmittedDate => Parser.ParseOsuTimestampNullable(_submittedDate);
+        public DateTime? SubmittedDateDateTime => Parser.ParseOsuTimestampNullable(SubmittedDate);
     }
 }
