@@ -19,9 +19,9 @@ namespace volcanicarts.osu.NET.Requests
             _loginData = loginData;
         }
 
-        protected virtual string RequestUrl => null;
+        protected virtual string RequestUrl => null!;
 
-        public async Task<T> QueueAsync(OsuClient osuClient, HttpClient httpClient)
+        public async Task<T?> QueueAsync(OsuClient osuClient, HttpClient httpClient)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, ConstructUrl(RequestUrl, Parameters));
             request.Headers.Authorization = new AuthenticationHeaderValue(_loginData.TokenType, _loginData.AccessToken);

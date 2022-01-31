@@ -10,6 +10,7 @@
         <Description>A .NET class library wrapping the osu!api v2</Description>
 		<OutputType>Library</OutputType>
         <RepositoryUrl>https://github.com/volcanicarts/osu.NET</RepositoryUrl>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 	<PropertyGroup Label="Nuget">
 		<Title>osu.NET</Title>

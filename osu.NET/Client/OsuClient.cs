@@ -15,9 +15,9 @@ namespace volcanicarts.osu.NET.Client
         private readonly HttpClient _httpClient = new();
 
         private readonly OsuClientCredentials _osuClientCredentials;
-        private OsuClientLoginData _loginData;
+        private OsuClientLoginData? _loginData;
 
-        public OsuClient(OsuClientCredentials osuClientCredentials = null)
+        public OsuClient(OsuClientCredentials osuClientCredentials = null!)
         {
             _osuClientCredentials = osuClientCredentials;
         }
@@ -27,7 +27,7 @@ namespace volcanicarts.osu.NET.Client
             var requestBody = CreateRequestBodyForLogin();
             var responseMessage = await _httpClient.PostAsync(Endpoints.Token, requestBody);
             var response = await responseMessage.Content.ReadAsStringAsync();
-            _loginData = JsonConvert.DeserializeObject<OsuClientLoginData>(response);
+            _loginData = JsonConvert.DeserializeObject<OsuClientLoginData>(response)!;
         }
 
         private StringContent CreateRequestBodyForLogin()
@@ -43,38 +43,40 @@ namespace volcanicarts.osu.NET.Client
                 throw new InvalidOperationException("Please call LoginAsync before making a request");
         }
 
-        public async Task<Beatmap> GetBeatmapAsync(string beatmapId)
+        public async Task<Beatmap?> GetBeatmapAsync(string beatmapId)
         {
             CheckLoginData();
-            var beatmapRequest = new BeatmapRequest(_loginData, beatmapId);
+            var beatmapRequest = new BeatmapRequest(_loginData!, beatmapId);
             return await beatmapRequest.QueueAsync(this, _httpClient);
         }
 
-        public async Task<BeatmapCompact[]> GetBeatmapsAsync(string[] beatmapIds)
+        public async Task<BeatmapCompact[]?> GetBeatmapsAsync(string[] beatmapIds)
         {
             CheckLoginData();
-            var beatmapsRequest = new BeatmapsRequest(_loginData, beatmapIds);
-            return (await beatmapsRequest.QueueAsync(this, _httpClient)).Beatmaps;
+            var beatmapsRequest = new BeatmapsRequest(_loginData!, beatmapIds);
+            var beatmapsetsArray = await beatmapsRequest.QueueAsync(this, _httpClient);
+            return beatmapsetsArray?.Beatmaps;
         }
 
-        public async Task<Beatmapset> GetBeatmapsetAsync(string beatmapsetId)
+        public async Task<Beatmapset?> GetBeatmapsetAsync(string beatmapsetId)
         {
             CheckLoginData();
-            var beatmapsetRequest = new BeatmapsetRequest(_loginData, beatmapsetId);
+            var beatmapsetRequest = new BeatmapsetRequest(_loginData!, beatmapsetId);
             return await beatmapsetRequest.QueueAsync(this, _httpClient);
         }
 
-        public async Task<BeatmapScore[]> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
+        public async Task<BeatmapScore[]?> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
         {
             CheckLoginData();
-            var beatmapScoresRequest = new BeatmapScoresRequest(_loginData, beatmapId, gameMode);
-            return (await beatmapScoresRequest.QueueAsync(this, _httpClient)).Scores;
+            var beatmapScoresRequest = new BeatmapScoresRequest(_loginData!, beatmapId, gameMode);
+            var scoresArray = await beatmapScoresRequest.QueueAsync(this, _httpClient);
+            return scoresArray?.Scores;
         }
 
-        public async Task<Rankings> GetRankingsAsync(GameMode gameMode, RankingType rankingType)
+        public async Task<Rankings?> GetRankingsAsync(GameMode gameMode, RankingType rankingType)
         {
             CheckLoginData();
-            var rankingsRequest = new RankingsRequest(_loginData, gameMode, rankingType);
+            var rankingsRequest = new RankingsRequest(_loginData!, gameMode, rankingType);
             return await rankingsRequest.QueueAsync(this, _httpClient);
         }
     }
