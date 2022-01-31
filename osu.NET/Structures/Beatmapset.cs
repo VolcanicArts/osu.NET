@@ -7,9 +7,6 @@ namespace volcanicarts.osu.NET.Structures
 {
     public class BeatmapsetCompact : BaseStructure
     {
-        [JsonIgnore]
-        private string _previewUrl;
-
         [JsonProperty("artist")]
         public string Artist;
 
@@ -56,11 +53,7 @@ namespace volcanicarts.osu.NET.Structures
         public bool Video;
 
         [JsonProperty("preview_url")]
-        public string PreviewUrl
-        {
-            get => $"https:{_previewUrl}";
-            set => _previewUrl = value;
-        }
+        public string PreviewUrl;
     }
 
     public class Beatmapset : BeatmapsetCompact
