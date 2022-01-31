@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -27,7 +28,7 @@ namespace volcanicarts.osu.NET.Requests
             request.Headers.Authorization = new AuthenticationHeaderValue(_loginData.TokenType, _loginData.AccessToken);
 
             var response = await httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
+            if (response.StatusCode == HttpStatusCode.NotFound) return null;
             var responseAsString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(responseAsString);
             if (result == null) return null;
