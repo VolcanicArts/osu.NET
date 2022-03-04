@@ -25,6 +25,7 @@ namespace osu.NET.Tests
             try
             {
                 await osuClient.LoginAsync();
+                Assert.Fail();
             }
             catch (InvalidOsuClientCredentialsException)
             {
@@ -40,6 +41,7 @@ namespace osu.NET.Tests
             try
             {
                 await osuClient.LoginAsync();
+                Assert.Fail();
             }
             catch (InvalidOsuClientCredentialsException)
             {
@@ -57,6 +59,7 @@ namespace osu.NET.Tests
             try
             {
                 await osuClient.LoginAsync();
+                Assert.Fail();
             }
             catch (InvalidOsuClientCredentialsException)
             {
