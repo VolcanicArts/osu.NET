@@ -27,12 +27,18 @@ namespace volcanicarts.osu.NET.Client
             var requestBody = CreateRequestBodyForLogin();
             var responseMessage = await _httpClient.PostAsync(Endpoints.Token, requestBody);
             var response = await responseMessage.Content.ReadAsStringAsync();
-            _loginData = JsonConvert.DeserializeObject<OsuClientLoginData>(response)!;
+            try
+            {
+                _loginData = JsonConvert.DeserializeObject<OsuClientLoginData>(response)!;
+            }
+            catch (JsonReaderException e)
+            {
+                throw new InvalidOsuClientCredentialsException("Unable to deserialise login data. Provided client credentials are invalid");
+            }
         }
 
         private StringContent CreateRequestBodyForLogin()
         {
-            if (_osuClientCredentials == null) throw new InvalidOsuClientCredentialsException();
             var clientSerialized = JsonConvert.SerializeObject(_osuClientCredentials);
             return new StringContent(clientSerialized, Encoding.UTF8, "application/json");
         }

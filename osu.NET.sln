@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET", "osu.NET\osu.NET.csproj", "{F7448A2A-3629-4D74-986C-A2AC2B145603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET.Tests", "osu.NET.Tests\osu.NET.Tests.csproj", "{787B74EA-BDEA-4AFC-944F-EDA4BECD3EB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET.Tests", "osu.NET.Tests\osu.NET.Tests.csproj", "{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{F7448A2A-3629-4D74-986C-A2AC2B145603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7448A2A-3629-4D74-986C-A2AC2B145603}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7448A2A-3629-4D74-986C-A2AC2B145603}.Release|Any CPU.Build.0 = Release|Any CPU
-		{787B74EA-BDEA-4AFC-944F-EDA4BECD3EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{787B74EA-BDEA-4AFC-944F-EDA4BECD3EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{787B74EA-BDEA-4AFC-944F-EDA4BECD3EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{787B74EA-BDEA-4AFC-944F-EDA4BECD3EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
