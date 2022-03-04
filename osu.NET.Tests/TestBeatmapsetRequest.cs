@@ -32,8 +32,8 @@ namespace osu.NET.Tests
         public async Task TestInvalidBeatmapsetIdRequest()
         {
             const string beatmapsetId = "123456789";
-            var beatmap = await osuClient.GetBeatmapsetAsync(beatmapsetId);
-            if (beatmap != null) Assert.Fail();
+            var beatmapset = await osuClient.GetBeatmapsetAsync(beatmapsetId);
+            if (beatmapset != null) Assert.Fail();
         }
     }
 }
