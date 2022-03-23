@@ -23,8 +23,9 @@ namespace osu.NET.Tests
         public async Task TestNoBeatmaps()
         {
             var beatmaps = await osuClient.GetBeatmapsAsync(Array.Empty<string>());
-            if (beatmaps == null) Assert.Fail();
-            Assert.That(beatmaps.Length == 0);
+            
+            Assert.NotNull(beatmaps);
+            Assert.Zero(beatmaps.Count);
         }
 
         [Test]
@@ -32,39 +33,33 @@ namespace osu.NET.Tests
         {
             var beatmapIds = new[] { "569636" };
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
-            if (beatmaps == null) Assert.Fail();
-            Assert.That(beatmaps.Length == 1);
+            
+            Assert.NotNull(beatmaps);
+            Assert.That(beatmaps.Count == 1);
             Assert.That(beatmaps[0].Id.ToString().Equals(beatmapIds[0]));
         }
-        
+
         [Test]
         public async Task TestMaximumOfSameBeatmap()
         {
             const int size = 50;
-            
+
             var beatmapIds = new string[size];
             for (var i = 0; i < size; i++) beatmapIds[i] = "569636";
-            
+
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
-            if (beatmaps == null) Assert.Fail();
-            Assert.That(beatmaps.Length == 1);
+            
+            Assert.NotNull(beatmaps);
+            Assert.That(beatmaps.Count == 1);
             Assert.That(beatmaps[0].Id.ToString().Equals(beatmapIds[0]));
         }
 
         [Test]
-        public async Task TestTooManyBeatmaps()
+        public Task TestTooManyBeatmaps()
         {
             const int size = 51;
-
-            try
-            {
-                await osuClient.GetBeatmapsAsync(new string[size]);
-                Assert.Fail();
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
+            Assert.ThrowsAsync<ArgumentException>(async () => await osuClient.GetBeatmapsAsync(new string[size]));
+            return Task.CompletedTask;
         }
     }
 }

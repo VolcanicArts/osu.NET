@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,7 +57,7 @@ namespace volcanicarts.osu.NET.Client
             return await beatmapRequest.QueueAsync(this, _httpClient);
         }
 
-        public async Task<BeatmapCompact[]?> GetBeatmapsAsync(string[] beatmapIds)
+        public async Task<IReadOnlyList<BeatmapCompact>?> GetBeatmapsAsync(string[] beatmapIds)
         {
             CheckLoginData();
             var beatmapsRequest = new BeatmapsRequest(_loginData!, beatmapIds);
@@ -71,7 +72,7 @@ namespace volcanicarts.osu.NET.Client
             return await beatmapsetRequest.QueueAsync(this, _httpClient);
         }
 
-        public async Task<BeatmapScore[]?> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
+        public async Task<IReadOnlyList<BeatmapScore>?> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
         {
             CheckLoginData();
             var beatmapScoresRequest = new BeatmapScoresRequest(_loginData!, beatmapId, gameMode);

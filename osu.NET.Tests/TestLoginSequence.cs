@@ -6,6 +6,7 @@ using volcanicarts.osu.NET.Exceptions;
 
 namespace osu.NET.Tests
 {
+    
     public class TestLoginSequence
     {
         private string ValidClientId;
