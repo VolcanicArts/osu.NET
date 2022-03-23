@@ -6,7 +6,6 @@ using volcanicarts.osu.NET.Exceptions;
 
 namespace osu.NET.Tests
 {
-    
     public class TestLoginSequence
     {
         private string ValidClientId;
@@ -20,60 +19,49 @@ namespace osu.NET.Tests
         }
 
         [Test]
-        public async Task TestNoProvidedCredentials()
+        public Task TestNoProvidedCredentials()
         {
             var osuClient = new OsuClient();
-            try
-            {
-                await osuClient.LoginAsync();
-                Assert.Fail();
-            }
-            catch (InvalidOsuClientCredentialsException)
-            {
-                Assert.Pass();
-            }
+            
+            Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+            
+            return Task.CompletedTask;
         }
-        
+
+
         [Test]
-        public async Task TestEmptyLoginCredentials()
+        public Task TestEmptyLoginCredentials()
         {
             var osuClientCredentials = new OsuClientCredentials();
             var osuClient = new OsuClient(osuClientCredentials);
-            try
-            {
-                await osuClient.LoginAsync();
-                Assert.Fail();
-            }
-            catch (InvalidOsuClientCredentialsException)
-            {
-                Assert.Pass();
-            }
+            
+            Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+            
+            return Task.CompletedTask;
         }
 
         [Test]
-        public async Task TestEmptyPassedLoginCredentials()
+        public Task TestEmptyPassedLoginCredentials()
         {
             var clientId = string.Empty;
             var clientSecret = string.Empty;
             var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
             var osuClient = new OsuClient(osuClientCredentials);
-            try
-            {
-                await osuClient.LoginAsync();
-                Assert.Fail();
-            }
-            catch (InvalidOsuClientCredentialsException)
-            {
-                Assert.Pass();
-            }
+            
+            Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+            
+            return Task.CompletedTask;
         }
 
         [Test]
-        public async Task TestValidLoginCredentials()
+        public Task TestValidLoginCredentials()
         {
             var osuClientCredentials = new OsuClientCredentials(ValidClientId, ValidClientSecret);
             var osuClient = new OsuClient(osuClientCredentials);
-            await osuClient.LoginAsync();
+            
+            Assert.DoesNotThrowAsync(async () => await osuClient.LoginAsync());
+            
+            return Task.CompletedTask;
         }
     }
 }

@@ -24,8 +24,9 @@ namespace osu.NET.Tests
         {
             const string beatmapId = "569636";
             var beatmap = await osuClient.GetBeatmapAsync(beatmapId);
-            if (beatmap == null) Assert.Fail();
-            Assert.That(beatmap.Id.ToString().Equals(beatmapId));
+            
+            Assert.NotNull(beatmap);
+            Assert.AreEqual(beatmap.Id.ToString(), beatmapId);
         }
 
         [Test]
@@ -33,7 +34,8 @@ namespace osu.NET.Tests
         {
             const string beatmapId = "123456789";
             var beatmap = await osuClient.GetBeatmapAsync(beatmapId);
-            if (beatmap != null) Assert.Fail();
+            
+            Assert.Null(beatmap);
         }
     }
 }

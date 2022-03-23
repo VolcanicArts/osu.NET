@@ -36,7 +36,7 @@ namespace osu.NET.Tests
             
             Assert.NotNull(beatmaps);
             Assert.That(beatmaps.Count == 1);
-            Assert.That(beatmaps[0].Id.ToString().Equals(beatmapIds[0]));
+            Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace osu.NET.Tests
             
             Assert.NotNull(beatmaps);
             Assert.That(beatmaps.Count == 1);
-            Assert.That(beatmaps[0].Id.ToString().Equals(beatmapIds[0]));
+            Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
         }
 
         [Test]
