@@ -33,6 +33,12 @@ public class OsuClient
         if (loginData == null) throw new InvalidOperationException("Please call LoginAsync before making a request");
     }
 
+    public bool TryGetBeatmap(string beatmapId, out Beatmap? beatmap)
+    {
+        beatmap = GetBeatmapAsync(beatmapId).Result;
+        return beatmap != null;
+    }
+
     public async Task<Beatmap?> GetBeatmapAsync(string beatmapId)
     {
         AssertLoginData();
