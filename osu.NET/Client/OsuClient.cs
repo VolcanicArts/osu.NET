@@ -1,10 +1,10 @@
 ﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
 // See the LICENSE file in the repository root for full license text.
 
+using System;
 using System.Collections.Generic;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using volcanicarts.osu.NET.Exceptions;
 using volcanicarts.osu.NET.Requests;
 using volcanicarts.osu.NET.Structures;
 
@@ -25,12 +25,12 @@ public class OsuClient
         var loginRequest = new LoginWebRequest(osuClientCredentials);
         var response = await loginRequest.PerformAsync();
         loginData = response ??
-                    throw new InvalidOsuClientCredentialsException("Unable to deserialize login data. Provided client credentials are invalid");
+                    throw new InvalidCredentialException("Unable to deserialize login data. Provided client credentials are invalid");
     }
 
     private void AssertLoginData()
     {
-        if (loginData == null) throw new InvalidCredentialException("Please call LoginAsync before making a request");
+        if (loginData == null) throw new InvalidOperationException("Please call LoginAsync before making a request");
     }
 
     public async Task<Beatmap?> GetBeatmapAsync(string beatmapId)

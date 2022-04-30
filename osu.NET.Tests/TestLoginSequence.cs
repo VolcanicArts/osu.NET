@@ -1,8 +1,8 @@
 using System;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using volcanicarts.osu.NET.Client;
-using volcanicarts.osu.NET.Exceptions;
 
 namespace osu.NET.Tests;
 
@@ -23,7 +23,7 @@ public class TestLoginSequence
     {
         var osuClient = new OsuClient();
 
-        Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+        Assert.ThrowsAsync<InvalidCredentialException>(async () => await osuClient.LoginAsync());
 
         return Task.CompletedTask;
     }
@@ -35,7 +35,7 @@ public class TestLoginSequence
         var osuClientCredentials = new OsuClientCredentials();
         var osuClient = new OsuClient(osuClientCredentials);
 
-        Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+        Assert.ThrowsAsync<InvalidCredentialException>(async () => await osuClient.LoginAsync());
 
         return Task.CompletedTask;
     }
@@ -48,7 +48,7 @@ public class TestLoginSequence
         var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
         var osuClient = new OsuClient(osuClientCredentials);
 
-        Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+        Assert.ThrowsAsync<InvalidCredentialException>(async () => await osuClient.LoginAsync());
 
         return Task.CompletedTask;
     }
@@ -61,7 +61,7 @@ public class TestLoginSequence
         var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
         var osuClient = new OsuClient(osuClientCredentials);
 
-        Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+        Assert.ThrowsAsync<InvalidCredentialException>(async () => await osuClient.LoginAsync());
 
         return Task.CompletedTask;
     }
