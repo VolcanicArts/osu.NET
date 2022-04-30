@@ -35,7 +35,7 @@ namespace osu.NET.Tests
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
             
             Assert.NotNull(beatmaps);
-            Assert.That(beatmaps.Count == 1);
+            Assert.That(beatmaps.Count, Is.EqualTo(1));
             Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
         }
 
@@ -50,7 +50,7 @@ namespace osu.NET.Tests
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
             
             Assert.NotNull(beatmaps);
-            Assert.That(beatmaps.Count == 1);
+            Assert.That(beatmaps.Count, Is.EqualTo(1));
             Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
         }
 

@@ -54,6 +54,19 @@ namespace osu.NET.Tests
         }
 
         [Test]
+        public Task TestInvalidLoginCredentials()
+        {
+            const string clientId = "123456789";
+            const string clientSecret = "123456789";
+            var osuClientCredentials = new OsuClientCredentials(clientId, clientSecret);
+            var osuClient = new OsuClient(osuClientCredentials);
+            
+            Assert.ThrowsAsync<InvalidOsuClientCredentialsException>(async () => await osuClient.LoginAsync());
+            
+            return Task.CompletedTask;
+        }
+
+        [Test]
         public Task TestValidLoginCredentials()
         {
             var osuClientCredentials = new OsuClientCredentials(ValidClientId, ValidClientSecret);

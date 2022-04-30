@@ -26,7 +26,7 @@ namespace osu.NET.Tests
             var beatmapset = await osuClient.GetBeatmapsetAsync(beatmapsetId);
             
             Assert.NotNull(beatmapset);
-            Assert.AreEqual(beatmapset.Id.ToString(), beatmapsetId);
+            Assert.That(beatmapset.Id.ToString(), Is.EqualTo(beatmapsetId));
         }
 
         [Test]
