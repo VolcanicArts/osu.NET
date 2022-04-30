@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup Label="Project">
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>volcanicarts.osu.NET</RootNamespace>
         <PackageVersion>2022.131.2</PackageVersion>
         <AssemblyTitle>osu.NET</AssemblyTitle>
