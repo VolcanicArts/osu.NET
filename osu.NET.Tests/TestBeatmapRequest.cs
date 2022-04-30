@@ -22,20 +22,20 @@ namespace osu.NET.Tests
         [Test]
         public async Task TestValidBeatmapIdRequest()
         {
-            const string beatmapId = "569636";
+            var beatmapId = TestConstants.VALID_BEATMAP_ID;
             var beatmap = await osuClient.GetBeatmapAsync(beatmapId);
             
-            Assert.NotNull(beatmap);
+            Assert.That(beatmap, Is.Not.Null);
             Assert.That(beatmap.Id.ToString(), Is.EqualTo(beatmapId));
         }
 
         [Test]
         public async Task TestInvalidBeatmapIdRequest()
         {
-            const string beatmapId = "123456789";
+            var beatmapId = TestConstants.INVALID_BEATMAP_ID;
             var beatmap = await osuClient.GetBeatmapAsync(beatmapId);
             
-            Assert.Null(beatmap);
+            Assert.That(beatmap, Is.Null);
         }
     }
 }

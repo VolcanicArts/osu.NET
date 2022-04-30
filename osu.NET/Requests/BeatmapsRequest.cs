@@ -1,19 +1,28 @@
-﻿using System;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+using System;
 using System.Collections.Generic;
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
-using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Requests
 {
-    public class BeatmapsRequest : BaseRequest<BeatmapCompactArray>
+    public class BeatmapsRequest : OsuWebRequest<BeatmapCompactArray>
     {
-        public BeatmapsRequest(OsuClientLoginData loginData, IReadOnlyCollection<string> beatmapIds) : base(loginData)
+        protected override string Endpoint => "/beatmaps";
+
+        private readonly IReadOnlyCollection<string> beatmapIds;
+
+        public BeatmapsRequest(OsuClient client, IReadOnlyCollection<string> beatmapIds) : base(client)
         {
             if (beatmapIds.Count > 50) throw new ArgumentException("BeatmapIds must not contain more than 50 Ids");
-            foreach (var beatmapId in beatmapIds) Parameters.Add(new KeyValuePair<string, string>("ids[]", beatmapId));
+            this.beatmapIds = beatmapIds;
         }
 
-        protected override string RequestUrl => $"{Endpoints.Api}/beatmaps";
+        protected override void PreProcess()
+        {
+            foreach (var beatmapId in beatmapIds) AddParameter("ids[]", beatmapId);
+        }
     }
 }

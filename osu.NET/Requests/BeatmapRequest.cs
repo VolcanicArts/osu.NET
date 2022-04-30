@@ -1,18 +1,20 @@
-﻿using volcanicarts.osu.NET.Client;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
-using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Requests
 {
-    public class BeatmapRequest : BaseRequest<Beatmap>
+    public class BeatmapRequest : OsuWebRequest<Beatmap>
     {
-        private readonly string _beatmapId;
+        protected override string Endpoint => $"/beatmaps/{beatmapId}";
 
-        public BeatmapRequest(OsuClientLoginData loginData, string beatmapId) : base(loginData)
+        private readonly string beatmapId;
+
+        public BeatmapRequest(OsuClient client, string beatmapId) : base(client)
         {
-            _beatmapId = beatmapId;
+            this.beatmapId = beatmapId;
         }
-
-        protected override string RequestUrl => $"{Endpoints.Api}/beatmaps/{_beatmapId}";
     }
 }

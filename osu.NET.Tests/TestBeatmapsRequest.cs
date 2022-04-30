@@ -24,19 +24,19 @@ namespace osu.NET.Tests
         {
             var beatmaps = await osuClient.GetBeatmapsAsync(Array.Empty<string>());
             
-            Assert.NotNull(beatmaps);
-            Assert.Zero(beatmaps.Count);
+            Assert.That(beatmaps, Is.Not.Null);
+            Assert.That(beatmaps.Count, Is.Zero);
         }
 
         [Test]
-        public async Task TestOneBeatmaps()
+        public async Task TestOneBeatmap()
         {
-            var beatmapIds = new[] { "569636" };
+            var beatmapIds = new[] { TestConstants.VALID_BEATMAP_ID };
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
             
-            Assert.NotNull(beatmaps);
+            Assert.That(beatmaps, Is.Not.Null);
             Assert.That(beatmaps.Count, Is.EqualTo(1));
-            Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
+            Assert.That(beatmaps[0].Id.ToString(), Is.EqualTo(beatmapIds[0]));
         }
 
         [Test]
@@ -45,13 +45,13 @@ namespace osu.NET.Tests
             const int size = 50;
 
             var beatmapIds = new string[size];
-            for (var i = 0; i < size; i++) beatmapIds[i] = "569636";
+            for (var i = 0; i < size; i++) beatmapIds[i] = TestConstants.VALID_BEATMAP_ID;
 
             var beatmaps = await osuClient.GetBeatmapsAsync(beatmapIds);
             
-            Assert.NotNull(beatmaps);
+            Assert.That(beatmaps, Is.Not.Null);
             Assert.That(beatmaps.Count, Is.EqualTo(1));
-            Assert.AreEqual(beatmaps[0].Id.ToString(), beatmapIds[0]);
+            Assert.That(beatmaps[0].Id.ToString(), Is.EqualTo(beatmapIds[0]));
         }
 
         [Test]

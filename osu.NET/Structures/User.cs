@@ -1,8 +1,11 @@
-﻿using System;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+#nullable enable
+using System;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
-#nullable enable
 namespace volcanicarts.osu.NET.Structures
 {
     public class Cover

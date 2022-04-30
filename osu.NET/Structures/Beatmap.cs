@@ -1,6 +1,8 @@
-﻿#nullable enable
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+#nullable enable
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
@@ -39,7 +41,7 @@ namespace volcanicarts.osu.NET.Structures
         [JsonProperty("version")]
         public string Version;
 
-        public Task<Beatmapset> GetBeatmapsetAsync()
+        public Task<Beatmapset?> GetBeatmapsetAsync()
         {
             return OsuClient.GetBeatmapsetAsync(BeatmapsetId.ToString());
         }

@@ -5,21 +5,21 @@
         <RootNamespace>volcanicarts.osu.NET</RootNamespace>
         <PackageVersion>2022.131.2</PackageVersion>
         <AssemblyTitle>osu.NET</AssemblyTitle>
-		<AssemblyName>osu.NET</AssemblyName>
+        <AssemblyName>osu.NET</AssemblyName>
         <Authors>VolcanicArts</Authors>
         <Description>A .NET class library wrapping the osu!api v2</Description>
-		<OutputType>Library</OutputType>
+        <OutputType>Library</OutputType>
         <RepositoryUrl>https://github.com/volcanicarts/osu.NET</RepositoryUrl>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-	<PropertyGroup Label="Nuget">
-		<Title>osu.NET</Title>
-		<PackageTags>osu api wrapper</PackageTags>
+    <PropertyGroup Label="Nuget">
+        <Title>osu.NET</Title>
+        <PackageTags>osu api wrapper</PackageTags>
         <PackageId>volcanicarts.osu.NET</PackageId>
-	</PropertyGroup>
+    </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
     </ItemGroup>
 
 </Project>

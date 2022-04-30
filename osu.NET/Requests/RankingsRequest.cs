@@ -1,22 +1,23 @@
-﻿using volcanicarts.osu.NET.Client;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
-using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Requests
 {
-    public class RankingsRequest : BaseRequest<Rankings>
+    public class RankingsRequest : OsuWebRequest<Rankings>
     {
-        private readonly GameMode _gameMode;
-        private readonly RankingType _rankingType;
+        protected override string Endpoint => $"/rankings/{gameMode.ToString().ToLower()}/{rankingType.ToString().ToLower()}";
 
-        public RankingsRequest(OsuClientLoginData loginData, GameMode gameMode, RankingType rankingType) :
-            base(loginData)
+        private readonly GameMode gameMode;
+        private readonly RankingType rankingType;
+
+        public RankingsRequest(OsuClient client, GameMode gameMode, RankingType rankingType) :
+            base(client)
         {
-            _gameMode = gameMode;
-            _rankingType = rankingType;
+            this.gameMode = gameMode;
+            this.rankingType = rankingType;
         }
-
-        protected override string RequestUrl =>
-            $"{Endpoints.Api}/rankings/{_gameMode.ToString().ToLower()}/{_rankingType.ToString().ToLower()}";
     }
 }

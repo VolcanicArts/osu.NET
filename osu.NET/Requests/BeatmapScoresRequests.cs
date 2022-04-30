@@ -1,20 +1,27 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
-using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Requests
 {
-    public class BeatmapScoresRequest : BaseRequest<BeatmapScores>
+    public class BeatmapScoresRequest : OsuWebRequest<BeatmapScores>
     {
-        private readonly string _beatmapId;
+        protected override string Endpoint => $"/beatmaps/{beatmapId}/scores";
 
-        public BeatmapScoresRequest(OsuClientLoginData loginData, string beatmapId, GameMode gameMode) : base(loginData)
+        private readonly string beatmapId;
+        private readonly GameMode gameMode;
+
+        public BeatmapScoresRequest(OsuClient client, string beatmapId, GameMode gameMode) : base(client)
         {
-            _beatmapId = beatmapId;
-            Parameters.Add(new KeyValuePair<string, string>("mode", gameMode.ToString().ToLower()));
+            this.beatmapId = beatmapId;
+            this.gameMode = gameMode;
         }
 
-        protected override string RequestUrl => $"{Endpoints.Api}/beatmaps/{_beatmapId}/scores";
+        protected override void PreProcess()
+        {
+            AddParameter("mode", gameMode.ToString().ToLower());
+        }
     }
 }

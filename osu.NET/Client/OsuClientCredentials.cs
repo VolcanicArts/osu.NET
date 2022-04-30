@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// See the LICENSE file in the repository root for full license text.
+
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
 namespace volcanicarts.osu.NET.Client
@@ -12,7 +15,7 @@ namespace volcanicarts.osu.NET.Client
         [JsonProperty("scope")]
         [NotNull]
         public const string Scope = "public";
-        
+
         [JsonProperty("client_id")]
         public string ClientId { get; private set; }
 
