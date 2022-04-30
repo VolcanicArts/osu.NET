@@ -10,6 +10,9 @@ using volcanicarts.osu.NET.Structures;
 
 namespace volcanicarts.osu.NET.Client;
 
+/// <summary>
+/// The client class to interface with osu!api V2
+/// </summary>
 public class OsuClient
 {
     private readonly OsuClientCredentials osuClientCredentials;
@@ -20,6 +23,10 @@ public class OsuClient
         this.osuClientCredentials = osuClientCredentials;
     }
 
+    /// <summary>
+    /// Attempts to login using the provided <see cref="OsuClientCredentials"/> on construction
+    /// </summary>
+    /// <exception cref="InvalidCredentialException">Thrown when the client credentials are invalid</exception>
     public async Task LoginAsync()
     {
         var loginRequest = new LoginWebRequest(osuClientCredentials);
@@ -33,12 +40,23 @@ public class OsuClient
         if (loginData == null) throw new InvalidOperationException("Please call LoginAsync before making a request");
     }
 
+    /// <summary>
+    /// A synchronous method of retrieving a beatmap from the API
+    /// </summary>
+    /// <param name="beatmapId">The beatmap Id of the beatmap you want to retrieve</param>
+    /// <param name="beatmap">The resulting <see cref="Beatmap"/> of the query</param>
+    /// <returns>True if the beatmap exists, false if not</returns>
     public bool TryGetBeatmap(string beatmapId, out Beatmap? beatmap)
     {
         beatmap = GetBeatmapAsync(beatmapId).Result;
         return beatmap != null;
     }
 
+    /// <summary>
+    /// An asynchronous method of retrieving a beatmap from the API
+    /// </summary>
+    /// <param name="beatmapId">The beatmap Id of the beatmap you want to retrieve</param>
+    /// <returns>A Task containing a possibly null <see cref="Beatmap"/></returns>
     public async Task<Beatmap?> GetBeatmapAsync(string beatmapId)
     {
         AssertLoginData();
