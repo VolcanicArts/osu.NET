@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET", "osu.NET\osu.NET.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET.Tests", "osu.NET.Tests\osu.NET.Tests.csproj", "{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.NET.Examples", "osu.NET.Examples\osu.NET.Examples.csproj", "{231A7AC7-E75C-41F3-9AB1-B9AB8B75700A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19EE895B-2297-4C6B-B671-2AB5ACAB6BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231A7AC7-E75C-41F3-9AB1-B9AB8B75700A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231A7AC7-E75C-41F3-9AB1-B9AB8B75700A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231A7AC7-E75C-41F3-9AB1-B9AB8B75700A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231A7AC7-E75C-41F3-9AB1-B9AB8B75700A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
