@@ -12,14 +12,14 @@ namespace volcanicarts.osu.NET.Requests;
 
 public abstract class OsuWebRequest<T> : WebRequest where T : BaseStructure
 {
-    protected override string BaseURL => "https://osu.ppy.sh/api/v2";
-
     private readonly OsuClient client;
 
     protected OsuWebRequest(OsuClient client)
     {
         this.client = client;
     }
+
+    protected override string BaseURL => "https://osu.ppy.sh/api/v2";
 
     public new async Task<T?> PerformAsync()
     {

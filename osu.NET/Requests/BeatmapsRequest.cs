@@ -6,23 +6,22 @@ using System.Collections.Generic;
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests
+namespace volcanicarts.osu.NET.Requests;
+
+public class BeatmapsRequest : OsuWebRequest<BeatmapCompactArray>
 {
-    public class BeatmapsRequest : OsuWebRequest<BeatmapCompactArray>
+    private readonly IReadOnlyCollection<string> beatmapIds;
+
+    public BeatmapsRequest(OsuClient client, IReadOnlyCollection<string> beatmapIds) : base(client)
     {
-        protected override string Endpoint => "/beatmaps";
+        if (beatmapIds.Count > 50) throw new ArgumentException("BeatmapIds must not contain more than 50 Ids");
+        this.beatmapIds = beatmapIds;
+    }
 
-        private readonly IReadOnlyCollection<string> beatmapIds;
+    protected override string Endpoint => "/beatmaps";
 
-        public BeatmapsRequest(OsuClient client, IReadOnlyCollection<string> beatmapIds) : base(client)
-        {
-            if (beatmapIds.Count > 50) throw new ArgumentException("BeatmapIds must not contain more than 50 Ids");
-            this.beatmapIds = beatmapIds;
-        }
-
-        protected override void PreProcess()
-        {
-            foreach (var beatmapId in beatmapIds) AddParameter("ids[]", beatmapId);
-        }
+    protected override void PreProcess()
+    {
+        foreach (var beatmapId in beatmapIds) AddParameter("ids[]", beatmapId);
     }
 }

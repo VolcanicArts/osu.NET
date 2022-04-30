@@ -12,7 +12,7 @@ namespace osu.NET.Tests;
 public class TestRankingsRequest
 {
     private OsuClient osuClient;
-        
+
     [SetUp]
     public async Task SetUp()
     {
@@ -27,7 +27,7 @@ public class TestRankingsRequest
     public async Task TestValidRankings()
     {
         var rankings = await osuClient.GetRankingsAsync(GameMode.Osu, RankingType.Performance);
-            
+
         Assert.That(rankings, Is.Not.Null);
     }
 }

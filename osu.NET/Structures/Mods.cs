@@ -1,17 +1,16 @@
 ﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
 // See the LICENSE file in the repository root for full license text.
 
-namespace volcanicarts.osu.NET.Structures
+namespace volcanicarts.osu.NET.Structures;
+
+public enum Mods
 {
-    public enum Mods
-    {
-        HR,
-        HD,
-        DT,
-        NC,
-        FL,
-        EZ,
-        PF,
-        SD
-    }
+    HR,
+    HD,
+    DT,
+    NC,
+    FL,
+    EZ,
+    PF,
+    SD
 }

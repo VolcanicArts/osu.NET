@@ -5,101 +5,100 @@ using System;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
-namespace volcanicarts.osu.NET.Structures
+namespace volcanicarts.osu.NET.Structures;
+
+public class BeatmapScores : BaseStructure
 {
-    public class BeatmapScores : BaseStructure
-    {
-        [JsonProperty("scores")]
-        public BeatmapScore[] Scores;
-    }
+    [JsonProperty("scores")]
+    public BeatmapScore[] Scores;
+}
 
-    public class ScoreStatistics
-    {
-        [JsonProperty("count_100")]
-        public int Count100;
+public class ScoreStatistics
+{
+    [JsonProperty("count_100")]
+    public int Count100;
 
-        [JsonProperty("count_300")]
-        public int Count300;
+    [JsonProperty("count_300")]
+    public int Count300;
 
-        [JsonProperty("count_50")]
-        public int Count50;
+    [JsonProperty("count_50")]
+    public int Count50;
 
-        [JsonProperty("count_geki")]
-        public int CountGeki;
+    [JsonProperty("count_geki")]
+    public int CountGeki;
 
-        [JsonProperty("count_katu")]
-        public int CountKatu;
+    [JsonProperty("count_katu")]
+    public int CountKatu;
 
-        [JsonProperty("count_miss")]
-        public int CountMiss;
-    }
+    [JsonProperty("count_miss")]
+    public int CountMiss;
+}
 
-    public enum ScoreRank
-    {
-        XH,
-        SH,
-        X,
-        S,
-        A,
-        B,
-        C,
-        D
-    }
+public enum ScoreRank
+{
+    XH,
+    SH,
+    X,
+    S,
+    A,
+    B,
+    C,
+    D
+}
 
-    public class BeatmapScore
-    {
-        [JsonProperty("created_at")]
-        private string _createdAt;
+public class BeatmapScore
+{
+    [JsonProperty("created_at")]
+    private string _createdAt;
 
-        [JsonProperty("accuracy")]
-        public double Accuracy;
+    [JsonProperty("accuracy")]
+    public double Accuracy;
 
-        [JsonProperty("best_id")]
-        public long BestId;
+    [JsonProperty("best_id")]
+    public long BestId;
 
-        [JsonProperty("id")]
-        public long Id;
+    [JsonProperty("id")]
+    public long Id;
 
-        [JsonProperty("max_combo")]
-        public int MaxCombo;
+    [JsonProperty("max_combo")]
+    public int MaxCombo;
 
-        [JsonProperty("mode")]
-        public GameMode Mode;
+    [JsonProperty("mode")]
+    public GameMode Mode;
 
-        [JsonProperty("mode_int")]
-        public int ModeInt;
+    [JsonProperty("mode_int")]
+    public int ModeInt;
 
-        [JsonProperty("mods")]
-        public Mods[] Mods;
+    [JsonProperty("mods")]
+    public Mods[] Mods;
 
-        [JsonProperty("passed")]
-        public bool Passed;
+    [JsonProperty("passed")]
+    public bool Passed;
 
-        [JsonProperty("perfect")]
-        public bool Perfect;
+    [JsonProperty("perfect")]
+    public bool Perfect;
 
-        [JsonProperty("pp")]
-        public float PP;
+    [JsonProperty("pp")]
+    public float PP;
 
-        [JsonProperty("rank")]
-        public ScoreRank Rank;
+    [JsonProperty("rank")]
+    public ScoreRank Rank;
 
-        [JsonProperty("replay")]
-        public bool Replay;
+    [JsonProperty("replay")]
+    public bool Replay;
 
-        [JsonProperty("score")]
-        public int Score;
+    [JsonProperty("score")]
+    public int Score;
 
-        [JsonProperty("statistics")]
-        public ScoreStatistics Statistics;
+    [JsonProperty("statistics")]
+    public ScoreStatistics Statistics;
 
-        [JsonProperty("user")]
-        public UserCompact User;
+    [JsonProperty("user")]
+    public UserCompact User;
 
-        [JsonProperty("user_id")]
-        public int UserId;
+    [JsonProperty("user_id")]
+    public int UserId;
 
-        [JsonIgnore]
-        public DateTime CreatedAt => Parser.ParseOsuTimestamp(_createdAt);
-    }
+    [JsonIgnore]
+    public DateTime CreatedAt => Parser.ParseOsuTimestamp(_createdAt);
 }

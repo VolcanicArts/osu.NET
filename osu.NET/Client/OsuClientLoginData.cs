@@ -3,17 +3,16 @@
 
 using Newtonsoft.Json;
 
-namespace volcanicarts.osu.NET.Client
+namespace volcanicarts.osu.NET.Client;
+
+public class OsuClientLoginData
 {
-    public class OsuClientLoginData
-    {
-        [JsonProperty("access_token")]
-        public string AccessToken;
+    [JsonProperty("access_token")]
+    public string AccessToken;
 
-        [JsonProperty("expires_in")]
-        public int ExpiresIn;
+    [JsonProperty("expires_in")]
+    public int ExpiresIn;
 
-        [JsonProperty("token_type")]
-        public string TokenType;
-    }
+    [JsonProperty("token_type")]
+    public string TokenType;
 }

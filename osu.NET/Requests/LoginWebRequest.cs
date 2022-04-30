@@ -12,17 +12,17 @@ namespace volcanicarts.osu.NET.Requests;
 
 public class LoginWebRequest : WebRequest
 {
-    protected override string BaseURL => "https://osu.ppy.sh/oauth/token";
-    protected override string Endpoint => string.Empty;
-    protected override HttpMethod Method => HttpMethod.Post;
-    protected override HttpStatusCode AcceptCode => HttpStatusCode.OK;
-
     private readonly OsuClientCredentials credentials;
 
     public LoginWebRequest(OsuClientCredentials credentials)
     {
         this.credentials = credentials;
     }
+
+    protected override string BaseURL => "https://osu.ppy.sh/oauth/token";
+    protected override string Endpoint => string.Empty;
+    protected override HttpMethod Method => HttpMethod.Post;
+    protected override HttpStatusCode AcceptCode => HttpStatusCode.OK;
 
     public new async Task<OsuClientLoginData?> PerformAsync()
     {

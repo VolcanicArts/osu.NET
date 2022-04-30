@@ -7,103 +7,102 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
-namespace volcanicarts.osu.NET.Structures
+namespace volcanicarts.osu.NET.Structures;
+
+public class BeatmapCompactArray : BaseStructure
 {
-    public class BeatmapCompactArray : BaseStructure
+    [JsonProperty("beatmaps")]
+    public BeatmapCompact[] Beatmaps;
+}
+
+public class BeatmapCompact : BaseStructure
+{
+    [JsonProperty("beatmapset_id")]
+    public int BeatmapsetId;
+
+    [JsonProperty("difficulty_rating")]
+    public float DifficultyRating;
+
+    [JsonProperty("id")]
+    public int Id;
+
+    [JsonProperty("mode")]
+    public GameMode Mode;
+
+    [JsonProperty("status")]
+    public RankStatus Status;
+
+    [JsonProperty("total_length")]
+    public int TotalLength;
+
+    [JsonProperty("user_id")]
+    public int UserId;
+
+    [JsonProperty("version")]
+    public string Version;
+
+    public Task<Beatmapset?> GetBeatmapsetAsync()
     {
-        [JsonProperty("beatmaps")]
-        public BeatmapCompact[] Beatmaps;
+        return OsuClient.GetBeatmapsetAsync(BeatmapsetId.ToString());
     }
+}
 
-    public class BeatmapCompact : BaseStructure
-    {
-        [JsonProperty("beatmapset_id")]
-        public int BeatmapsetId;
+public class Beatmap : BeatmapCompact
+{
+    [JsonProperty("deleted_at")]
+    private string? _deletedAt;
 
-        [JsonProperty("difficulty_rating")]
-        public float DifficultyRating;
+    [JsonProperty("accuracy")]
+    public float Accuracy;
 
-        [JsonProperty("id")]
-        public int Id;
+    [JsonProperty("ar")]
+    public float ApproachRate;
 
-        [JsonProperty("mode")]
-        public GameMode Mode;
+    [JsonProperty("bpm")]
+    public float Bpm;
 
-        [JsonProperty("status")]
-        public RankStatus Status;
+    [JsonProperty("count_circles")]
+    public int CircleCount;
 
-        [JsonProperty("total_length")]
-        public int TotalLength;
+    [JsonProperty("cs")]
+    public float CircleSize;
 
-        [JsonProperty("user_id")]
-        public int UserId;
+    [JsonProperty("convert")]
+    public bool Convert;
 
-        [JsonProperty("version")]
-        public string Version;
+    [JsonProperty("drain")]
+    public float Drain;
 
-        public Task<Beatmapset?> GetBeatmapsetAsync()
-        {
-            return OsuClient.GetBeatmapsetAsync(BeatmapsetId.ToString());
-        }
-    }
+    [JsonProperty("hit_length")]
+    public int HitLength;
 
-    public class Beatmap : BeatmapCompact
-    {
-        [JsonProperty("deleted_at")]
-        private string? _deletedAt;
+    [JsonProperty("is_scoreable")]
+    public bool IsScoreable;
 
-        [JsonProperty("accuracy")]
-        public float Accuracy;
+    [JsonProperty("last_updated")]
+    public string LastUpdated;
 
-        [JsonProperty("ar")]
-        public float ApproachRate;
+    [JsonProperty("mode_int")]
+    public int ModeInt;
 
-        [JsonProperty("bpm")]
-        public float Bpm;
+    [JsonProperty("passcount")]
+    public int PassCount;
 
-        [JsonProperty("count_circles")]
-        public int CircleCount;
+    [JsonProperty("playcount")]
+    public int PlayCount;
 
-        [JsonProperty("cs")]
-        public float CircleSize;
+    [JsonProperty("ranked")]
+    public RankStatus Ranked;
 
-        [JsonProperty("convert")]
-        public bool Convert;
+    [JsonProperty("count_sliders")]
+    public int SliderCount;
 
-        [JsonProperty("drain")]
-        public float Drain;
+    [JsonProperty("count_spinners")]
+    public int SpinnerCount;
 
-        [JsonProperty("hit_length")]
-        public int HitLength;
+    [JsonProperty("url")]
+    public string Url;
 
-        [JsonProperty("is_scoreable")]
-        public bool IsScoreable;
-
-        [JsonProperty("last_updated")]
-        public string LastUpdated;
-
-        [JsonProperty("mode_int")]
-        public int ModeInt;
-
-        [JsonProperty("passcount")]
-        public int PassCount;
-
-        [JsonProperty("playcount")]
-        public int PlayCount;
-
-        [JsonProperty("ranked")]
-        public RankStatus Ranked;
-
-        [JsonProperty("count_sliders")]
-        public int SliderCount;
-
-        [JsonProperty("count_spinners")]
-        public int SpinnerCount;
-
-        [JsonProperty("url")]
-        public string Url;
-
-        [JsonIgnore]
-        public DateTime? DeletedAt => Parser.ParseOsuTimestampNullable(_deletedAt);
-    }
+    [JsonIgnore]
+    public DateTime? DeletedAt => Parser.ParseOsuTimestampNullable(_deletedAt);
 }

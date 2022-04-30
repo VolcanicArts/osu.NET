@@ -8,56 +8,54 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace volcanicarts.osu.NET.Requests
+namespace volcanicarts.osu.NET.Requests;
+
+public class WebRequest
 {
-    public class WebRequest
+    private static readonly HttpClient client = new(new SocketsHttpHandler());
+
+    private readonly List<KeyValuePair<string, string>> urlParameters = new();
+    protected virtual string BaseURL => string.Empty;
+    protected virtual string Endpoint => string.Empty;
+    protected virtual HttpMethod Method => HttpMethod.Get;
+    protected virtual HttpStatusCode AcceptCode => HttpStatusCode.OK;
+
+    protected void AddParameter(string key, string value)
     {
-        protected virtual string BaseURL => string.Empty;
-        protected virtual string Endpoint => string.Empty;
-        protected virtual HttpMethod Method => HttpMethod.Get;
-        protected virtual HttpStatusCode AcceptCode => HttpStatusCode.OK;
+        urlParameters.Add(new KeyValuePair<string, string>(key, value));
+    }
 
-        private static readonly HttpClient client = new(new SocketsHttpHandler());
+    private string constructUrl()
+    {
+        var requestString = $"{BaseURL}{Endpoint}";
 
-        private readonly List<KeyValuePair<string, string>> urlParameters = new();
+        if (urlParameters.Count > 0) requestString += "?";
+        requestString = urlParameters.Aggregate(requestString, (current, pair) => current + $"{pair.Key}={pair.Value}&");
+        requestString = requestString.TrimEnd('&');
 
-        protected void AddParameter(string key, string value)
-        {
-            urlParameters.Add(new KeyValuePair<string, string>(key, value));
-        }
+        return requestString;
+    }
 
-        private string constructUrl()
-        {
-            var requestString = $"{BaseURL}{Endpoint}";
+    public async Task<HttpResponseMessage> PerformAsync()
+    {
+        PreProcess();
 
-            if (urlParameters.Count > 0) requestString += "?";
-            requestString = urlParameters.Aggregate(requestString, (current, pair) => current + $"{pair.Key}={pair.Value}&");
-            requestString = requestString.TrimEnd('&');
+        var request = new HttpRequestMessage(Method, constructUrl());
+        request.Content = GetContent();
 
-            return requestString;
-        }
+        SetHeaders(request.Headers);
 
-        public async Task<HttpResponseMessage> PerformAsync()
-        {
-            PreProcess();
+        var response = await client.SendAsync(request);
+        if (response.StatusCode != AcceptCode) throw new WebException($"Response code was not {AcceptCode}. Was instead {response.StatusCode}");
+        return response;
+    }
 
-            var request = new HttpRequestMessage(Method, constructUrl());
-            request.Content = GetContent();
+    protected virtual void PreProcess() { }
 
-            SetHeaders(request.Headers);
+    protected virtual void SetHeaders(HttpRequestHeaders headers) { }
 
-            var response = await client.SendAsync(request);
-            if (response.StatusCode != AcceptCode) throw new WebException($"Response code was not {AcceptCode}. Was instead {response.StatusCode}");
-            return response;
-        }
-
-        protected virtual void PreProcess() { }
-
-        protected virtual void SetHeaders(HttpRequestHeaders headers) { }
-
-        protected virtual StringContent GetContent()
-        {
-            return new StringContent(string.Empty);
-        }
+    protected virtual StringContent GetContent()
+    {
+        return new StringContent(string.Empty);
     }
 }

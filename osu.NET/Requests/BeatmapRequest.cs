@@ -4,17 +4,16 @@
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests
+namespace volcanicarts.osu.NET.Requests;
+
+public class BeatmapRequest : OsuWebRequest<Beatmap>
 {
-    public class BeatmapRequest : OsuWebRequest<Beatmap>
+    private readonly string beatmapId;
+
+    public BeatmapRequest(OsuClient client, string beatmapId) : base(client)
     {
-        protected override string Endpoint => $"/beatmaps/{beatmapId}";
-
-        private readonly string beatmapId;
-
-        public BeatmapRequest(OsuClient client, string beatmapId) : base(client)
-        {
-            this.beatmapId = beatmapId;
-        }
+        this.beatmapId = beatmapId;
     }
+
+    protected override string Endpoint => $"/beatmaps/{beatmapId}";
 }

@@ -12,7 +12,7 @@ namespace osu.NET.Tests;
 public class TestBeatmapScoresRequest
 {
     private OsuClient osuClient;
-        
+
     [SetUp]
     public async Task SetUp()
     {
@@ -28,20 +28,20 @@ public class TestBeatmapScoresRequest
     {
         var beatmapId = TestConstants.VALID_BEATMAP_ID;
         const GameMode mode = GameMode.Osu;
-        
+
         var scores = await osuClient.GetBeatmapScoresAsync(beatmapId, mode);
-        
+
         Assert.That(scores, Is.Not.Null);
     }
-    
+
     [Test]
     public async Task TestInvalidBeatmapIdRequest()
     {
         var beatmapId = TestConstants.INVALID_BEATMAP_ID;
         const GameMode mode = GameMode.Osu;
-        
+
         var scores = await osuClient.GetBeatmapScoresAsync(beatmapId, mode);
-        
+
         Assert.That(scores, Is.Null);
     }
 }
