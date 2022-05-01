@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using volcanicarts.osu.NET.Requests;
@@ -65,13 +66,35 @@ public class OsuClient
         return await beatmapRequest.PerformAsync();
     }
 
-    public async Task<IReadOnlyList<BeatmapCompact>?> GetBeatmapsAsync(string[] beatmapIds)
+    /// <summary>
+    /// A synchronous method of retrieving multiple beatmaps from the API
+    /// </summary>
+    /// <param name="beatmapIds">The beatmap Ids of the beatmaps you want to retrieve</param>
+    /// <param name="beatmaps">The resulting <see cref="BeatmapCompact"/> list of the query</param>
+    /// <returns>True if the all beatmap Ids were resolved successfully, false if not</returns>
+    public bool TryGetBeatmaps(IReadOnlyList<string> beatmapIds, out IReadOnlyList<BeatmapCompact> beatmaps)
+    {
+        beatmaps = GetBeatmapsAsync(beatmapIds).Result;
+        foreach (var beatmapId in beatmapIds)
+        {
+            if (beatmaps.All(beatmap => beatmap.Id.ToString() != beatmapId)) return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// An asynchronous method of retrieving multiple beatmaps from the API
+    /// </summary>
+    /// <param name="beatmapIds">The beatmap Ids of the beatmaps you want to retrieve</param>
+    /// <returns>A Task containing a <see cref="BeatmapCompact"/> list</returns>
+    public async Task<IReadOnlyList<BeatmapCompact>> GetBeatmapsAsync(IReadOnlyList<string> beatmapIds)
     {
         AssertLoginData();
 
         var beatmapsRequest = new BeatmapsRequest(this, beatmapIds);
-        var beatmapsetsArray = await beatmapsRequest.PerformAsync();
-        return beatmapsetsArray?.Beatmaps;
+        var beatmapsArray = await beatmapsRequest.PerformAsync();
+        return beatmapsArray!.Beatmaps;
     }
 
     public async Task<Beatmapset?> GetBeatmapsetAsync(string beatmapsetId)

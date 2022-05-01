@@ -38,6 +38,40 @@ public class TestBeatmapsRequest
         Assert.That(beatmaps.Count, Is.EqualTo(1));
         Assert.That(beatmaps[0].Id.ToString(), Is.EqualTo(beatmapIds[0]));
     }
+    
+    [Test]
+    public Task TestTryGetOneValidBeatmap()
+    {
+        var beatmapIds = new[] { TestConstants.VALID_BEATMAP_ID };
+        var successful = osuClient.TryGetBeatmaps(beatmapIds, out var beatmaps);
+
+        Assert.That(successful, Is.True);
+        Assert.That(beatmaps.Count, Is.EqualTo(1));
+        Assert.That(beatmaps[0].Id.ToString(), Is.EqualTo(beatmapIds[0]));
+        return Task.CompletedTask;
+    }
+    
+    [Test]
+    public Task TestTryGetOneInvalidBeatmap()
+    {
+        var beatmapIds = new[] { TestConstants.INVALID_BEATMAP_ID };
+        var successful = osuClient.TryGetBeatmaps(beatmapIds, out var beatmaps);
+
+        Assert.That(successful, Is.False);
+        Assert.That(beatmaps.Count, Is.EqualTo(0));
+        return Task.CompletedTask;
+    }
+    
+    [Test]
+    public Task TestTryGetManySingleInvalidBeatmap()
+    {
+        var beatmapIds = new[] { TestConstants.VALID_BEATMAP_ID, TestConstants.INVALID_BEATMAP_ID };
+        var successful = osuClient.TryGetBeatmaps(beatmapIds, out var beatmaps);
+
+        Assert.That(successful, Is.False);
+        Assert.That(beatmaps.Count, Is.EqualTo(1));
+        return Task.CompletedTask;
+    }
 
     [Test]
     public async Task TestMaximumOfSameBeatmap()
