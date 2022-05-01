@@ -1,4 +1,4 @@
-﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
 // See the LICENSE file in the repository root for full license text.
 
 using System;
@@ -150,6 +150,25 @@ public class OsuClient
         return scoresArray?.Scores;
     }
 
+    /// <summary>
+    /// A synchronous method of retrieving rankings from the API
+    /// </summary>
+    /// <param name="gameMode">The game mode of the rankings you want to retrieve</param>
+    /// <param name="rankingType">The rankingType of the rankings you want to retrieve of the query</param>
+    /// <param name="rankings">A possibly null <see cref="Rankings"/> object</param>
+    /// <returns>True if the rankings exists, false if not</returns>
+    public bool TryGetRankings(GameMode gameMode, RankingType rankingType, out Rankings? rankings)
+    {
+        rankings = GetRankingsAsync(gameMode, rankingType).Result;
+        return rankings != null;
+    }
+
+    /// <summary>
+    /// An asynchronous method of retrieving rankings from the API
+    /// </summary>
+    /// <param name="gameMode">The game mode of the rankings you want to retrieve</param>
+    /// <param name="rankingType">The ranking type of the rankings you want to retrieve</param>
+    /// <returns>A Task containing a possibly null <see cref="Rankings"/> object</returns>
     public async Task<Rankings?> GetRankingsAsync(GameMode gameMode, RankingType rankingType)
     {
         AssertLoginData();

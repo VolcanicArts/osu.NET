@@ -30,4 +30,14 @@ public class TestRankingsRequest
 
         Assert.That(rankings, Is.Not.Null);
     }
+    
+    [Test]
+    public Task TestTryGetValidRankings()
+    {
+        var successful = osuClient.TryGetRankings(GameMode.Osu, RankingType.Performance, out var rankings);
+
+        Assert.That(successful, Is.True);
+        Assert.That(rankings, Is.Not.Null);
+        return Task.CompletedTask;
+    }
 }
