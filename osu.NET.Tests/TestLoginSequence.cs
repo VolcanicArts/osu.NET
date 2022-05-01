@@ -19,17 +19,6 @@ public class TestLoginSequence
     }
 
     [Test]
-    public Task TestNoProvidedCredentials()
-    {
-        var osuClient = new OsuClient();
-
-        Assert.ThrowsAsync<InvalidCredentialException>(async () => await osuClient.LoginAsync());
-
-        return Task.CompletedTask;
-    }
-
-
-    [Test]
     public Task TestEmptyLoginCredentials()
     {
         var osuClientCredentials = new OsuClientCredentials();

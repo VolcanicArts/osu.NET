@@ -19,7 +19,7 @@ public class OsuClient
     private readonly OsuClientCredentials osuClientCredentials;
     internal OsuClientLoginData? loginData;
 
-    public OsuClient(OsuClientCredentials osuClientCredentials = null!)
+    public OsuClient(OsuClientCredentials osuClientCredentials)
     {
         this.osuClientCredentials = osuClientCredentials;
     }
