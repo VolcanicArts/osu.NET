@@ -97,6 +97,23 @@ public class OsuClient
         return beatmapsArray!.Beatmaps;
     }
 
+    /// <summary>
+    /// A synchronous method of retrieving a beatmapset from the API
+    /// </summary>
+    /// <param name="beatmapsetId">The beatmapset Id of the beatmapset you want to retrieve</param>
+    /// <param name="beatmapset">The resulting <see cref="Beatmapset"/> of the query</param>
+    /// <returns>True if the beatmapset exists, false if not</returns>
+    public bool TryGetBeatmapset(string beatmapsetId, out Beatmapset? beatmapset)
+    {
+        beatmapset = GetBeatmapsetAsync(beatmapsetId).Result;
+        return beatmapset != null;
+    }
+    
+    /// <summary>
+    /// An asynchronous method of retrieving a beatmapset from the API
+    /// </summary>
+    /// <param name="beatmapsetId">The beatmapset Id of the beatmapset you want to retrieve</param>
+    /// <returns>A Task containing a possibly null <see cref="Beatmapset"/></returns>
     public async Task<Beatmapset?> GetBeatmapsetAsync(string beatmapsetId)
     {
         AssertLoginData();
