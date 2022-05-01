@@ -44,4 +44,30 @@ public class TestBeatmapScoresRequest
 
         Assert.That(scores, Is.Null);
     }
+    
+    [Test]
+    public Task TestValidTryGetBeatmapIdRequest()
+    {
+        var beatmapId = TestConstants.VALID_BEATMAP_ID;
+        const GameMode mode = GameMode.Osu;
+
+        var successful = osuClient.TryGetBeatmapScores(beatmapId, mode, out var beatmapScores);
+        
+        Assert.That(successful, Is.True);
+        Assert.That(beatmapScores, Is.Not.Null);
+        return Task.CompletedTask;
+    }
+    
+    [Test]
+    public Task TestInvalidTryGetBeatmapIdRequest()
+    {
+        var beatmapId = TestConstants.INVALID_BEATMAP_ID;
+        const GameMode mode = GameMode.Osu;
+
+        var successful = osuClient.TryGetBeatmapScores(beatmapId, mode, out var beatmapScores);
+        
+        Assert.That(successful, Is.False);
+        Assert.That(beatmapScores, Is.Null);
+        return Task.CompletedTask;
+    }
 }

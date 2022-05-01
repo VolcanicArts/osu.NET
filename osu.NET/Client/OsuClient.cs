@@ -122,6 +122,25 @@ public class OsuClient
         return await beatmapsetRequest.PerformAsync();
     }
 
+    /// <summary>
+    /// A synchronous method of retrieving a beatmap score from the API
+    /// </summary>
+    /// <param name="beatmapId">The beatmap Id of the beatmap scores you want to retrieve</param>
+    /// <param name="gameMode">The game mode of the beatmap score you want to retrieve</param>
+    /// <param name="beatmapScores">The resulting possibly null <see cref="BeatmapScore"/> list of the query</param>
+    /// <returns>True if the beatmap score exists, false if not</returns>
+    public bool TryGetBeatmapScores(string beatmapId, GameMode gameMode, out IReadOnlyList<BeatmapScore>? beatmapScores)
+    {
+        beatmapScores = GetBeatmapScoresAsync(beatmapId, gameMode).Result;
+        return beatmapScores != null;
+    }
+
+    /// <summary>
+    /// An asynchronous method of retrieving a beatmap score from the API
+    /// </summary>
+    /// <param name="beatmapId">The beatmap Id of the beatmap scores you want to retrieve</param>
+    /// <param name="gameMode">The game mode of the beatmap score you want to retrieve</param>
+    /// <returns>A Task containing a possibly null <see cref="BeatmapScore"/> list</returns>
     public async Task<IReadOnlyList<BeatmapScore>?> GetBeatmapScoresAsync(string beatmapId, GameMode gameMode)
     {
         AssertLoginData();
