@@ -3,7 +3,7 @@
     <PropertyGroup Label="Project">
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>volcanicarts.osu.NET</RootNamespace>
-        <PackageVersion>2022.131.2</PackageVersion>
+        <PackageVersion>2022.503.0</PackageVersion>
         <AssemblyTitle>osu.NET</AssemblyTitle>
         <AssemblyName>osu.NET</AssemblyName>
         <Authors>VolcanicArts</Authors>
