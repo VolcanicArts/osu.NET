@@ -5,9 +5,9 @@ namespace osu.NET.Tests;
 
 public static class TestConstants
 {
-    public static string VALID_BEATMAP_ID = "569636";
-    public static string INVALID_BEATMAP_ID = "123456789";
+    public const string VALID_BEATMAP_ID = "569636";
+    public const string INVALID_BEATMAP_ID = "123456789";
 
-    public static string VALID_BEATMAPSET_ID = "236292";
-    public static string INVALID_BEATMAPSET_ID = "123456789";
+    public const string VALID_BEATMAPSET_ID = "236292";
+    public const string INVALID_BEATMAPSET_ID = "123456789";
 }
