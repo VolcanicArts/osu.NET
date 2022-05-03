@@ -111,6 +111,11 @@ public class OsuClient
         return beatmapset != null;
     }
     
+    public async Task<Beatmapset> GetBeatmapsetFromBeatmapAsync(Beatmap beatmap)
+    {
+        return (await GetBeatmapsetAsync(beatmap.BeatmapsetId.ToString()))!;
+    }
+    
     /// <summary>
     /// An asynchronous method of retrieving a beatmapset from the API
     /// </summary>
