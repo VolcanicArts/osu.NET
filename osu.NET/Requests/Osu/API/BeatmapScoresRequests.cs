@@ -4,9 +4,9 @@
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests;
+namespace volcanicarts.osu.NET.Requests.Osu.API;
 
-public class BeatmapScoresRequest : OsuWebRequest<BeatmapScores>
+public class BeatmapScoresRequest : OsuApiWebRequest<BeatmapScores>
 {
     private readonly string beatmapId;
     private readonly GameMode gameMode;
@@ -17,7 +17,7 @@ public class BeatmapScoresRequest : OsuWebRequest<BeatmapScores>
         this.gameMode = gameMode;
     }
 
-    protected override string Endpoint => $"/beatmaps/{beatmapId}/scores";
+    protected override string Endpoint => base.Endpoint + $"/beatmaps/{beatmapId}/scores";
 
     protected override void PreProcess()
     {

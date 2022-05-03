@@ -7,6 +7,8 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using volcanicarts.osu.NET.Requests;
+using volcanicarts.osu.NET.Requests.Osu.API;
+using volcanicarts.osu.NET.Requests.Osu.Login;
 using volcanicarts.osu.NET.Structures;
 
 namespace volcanicarts.osu.NET.Client;

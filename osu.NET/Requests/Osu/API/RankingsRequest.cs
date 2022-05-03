@@ -4,9 +4,9 @@
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests;
+namespace volcanicarts.osu.NET.Requests.Osu.API;
 
-public class RankingsRequest : OsuWebRequest<Rankings>
+public class RankingsRequest : OsuApiWebRequest<Rankings>
 {
     private readonly GameMode gameMode;
     private readonly RankingType rankingType;
@@ -18,5 +18,5 @@ public class RankingsRequest : OsuWebRequest<Rankings>
         this.rankingType = rankingType;
     }
 
-    protected override string Endpoint => $"/rankings/{gameMode.ToString().ToLower()}/{rankingType.ToString().ToLower()}";
+    protected override string Endpoint => base.Endpoint + $"/rankings/{gameMode.ToString().ToLower()}/{rankingType.ToString().ToLower()}";
 }

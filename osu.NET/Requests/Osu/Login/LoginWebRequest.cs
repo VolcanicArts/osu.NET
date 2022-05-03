@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Client;
 
-namespace volcanicarts.osu.NET.Requests;
+namespace volcanicarts.osu.NET.Requests.Osu.Login;
 
-public class LoginWebRequest : WebRequest
+public class LoginWebRequest : OsuWebRequest
 {
     private readonly OsuClientCredentials credentials;
 
@@ -19,10 +19,8 @@ public class LoginWebRequest : WebRequest
         this.credentials = credentials;
     }
 
-    protected override string BaseURL => "https://osu.ppy.sh/oauth/token";
-    protected override string Endpoint => string.Empty;
+    protected override string Endpoint => "/oauth/token";
     protected override HttpMethod Method => HttpMethod.Post;
-    protected override HttpStatusCode AcceptCode => HttpStatusCode.OK;
 
     public new async Task<OsuClientLoginData?> PerformAsync()
     {

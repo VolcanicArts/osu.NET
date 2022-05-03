@@ -8,18 +8,18 @@ using Newtonsoft.Json;
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests;
+namespace volcanicarts.osu.NET.Requests.Osu.API;
 
-public abstract class OsuWebRequest<T> : WebRequest where T : BaseStructure
+public abstract class OsuApiWebRequest<T> : OsuWebRequest where T : BaseStructure
 {
     private readonly OsuClient client;
 
-    protected OsuWebRequest(OsuClient client)
+    protected OsuApiWebRequest(OsuClient client)
     {
         this.client = client;
     }
 
-    protected override string BaseURL => "https://osu.ppy.sh/api/v2";
+    protected override string Endpoint => "/api/v2";
 
     public new async Task<T?> PerformAsync()
     {

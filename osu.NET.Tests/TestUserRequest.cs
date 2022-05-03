@@ -4,6 +4,7 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 using volcanicarts.osu.NET.Requests;
+using volcanicarts.osu.NET.Requests.Osu.API;
 using volcanicarts.osu.NET.Structures;
 
 namespace osu.NET.Tests;

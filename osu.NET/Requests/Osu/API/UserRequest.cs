@@ -4,9 +4,9 @@
 using volcanicarts.osu.NET.Client;
 using volcanicarts.osu.NET.Structures;
 
-namespace volcanicarts.osu.NET.Requests;
+namespace volcanicarts.osu.NET.Requests.Osu.API;
 
-public class UserRequest : OsuWebRequest<User>
+public class UserRequest : OsuApiWebRequest<User>
 {
     private readonly string user;
     private readonly UserLookup? lookup;
@@ -23,5 +23,5 @@ public class UserRequest : OsuWebRequest<User>
         AddParameter("key", lookup.ToString()!.ToLower());
     }
 
-    protected override string Endpoint => $"/users/{user}";
+    protected override string Endpoint => base.Endpoint + $"/users/{user}";
 }
