@@ -1,8 +1,9 @@
-﻿// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
+// Copyright (c) VolcanicArts. Licensed under the GPL-3.0 License.
 // See the LICENSE file in the repository root for full license text.
 
 #nullable enable
 using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using volcanicarts.osu.NET.Util;
 
@@ -22,25 +23,25 @@ public class Cover
 
 public enum ProfileSection
 {
-    [JsonProperty("me")]
+    [EnumMember(Value = "me")]
     Me,
 
-    [JsonProperty("recent_activity")]
+    [EnumMember(Value = "recent_activity")]
     RecentActivity,
 
-    [JsonProperty("beatmaps")]
+    [EnumMember(Value = "beatmaps")]
     Beatmaps,
 
-    [JsonProperty("historical")]
+    [EnumMember(Value = "historical")]
     Historical,
 
-    [JsonProperty("kudosu")]
+    [EnumMember(Value = "kudosu")]
     Kudosu,
 
-    [JsonProperty("top_ranks")]
+    [EnumMember(Value = "top_ranks")]
     TopRanks,
-
-    [JsonProperty("medals")]
+    
+    [EnumMember(Value = "medals")]
     Medals
 }
 
@@ -53,7 +54,7 @@ public class Kudosu
     public long Total;
 }
 
-public class UserCompact
+public class UserCompact : BaseStructure
 {
     [JsonProperty("avatar_url")]
     public string AvatarUrl;

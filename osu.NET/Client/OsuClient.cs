@@ -176,4 +176,20 @@ public class OsuClient
         var rankingsRequest = new RankingsRequest(this, gameMode, rankingType);
         return await rankingsRequest.PerformAsync();
     }
+
+    public async Task<User?> GetUserAsync(string userId, GameMode mode, UserLookup lookup = default)
+    {
+        AssertLoginData();
+        
+        var request = new UserModeRequest(this, userId, mode, lookup);
+        return await request.PerformAsync();
+    }
+
+    public async Task<User?> GetUserAsync(string userId, UserLookup lookup = default)
+    {
+        AssertLoginData();
+
+        var request = new UserRequest(this, userId, lookup);
+        return await request.PerformAsync();
+    }
 }
