@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using volcanicarts.osu.NET.Requests;
 using volcanicarts.osu.NET.Requests.Osu.API;
 using volcanicarts.osu.NET.Requests.Osu.Login;
 using volcanicarts.osu.NET.Structures;
@@ -184,19 +183,32 @@ public class OsuClient
         return await rankingsRequest.PerformAsync();
     }
 
-    public async Task<User?> GetUserAsync(string userId, GameMode mode, UserLookup lookup = default)
+    /// <summary>
+    /// An asynchronous method of retrieving a user from a user lookup for a specific gamemode
+    /// </summary>
+    /// <param name="lookupStr">The user Id or username</param>
+    /// <param name="mode">The game mode to get the user's data for</param>
+    /// <param name="lookup">Whether the <see cref="lookupStr"/> is an Id or username</param>
+    /// <returns>A Task containing a possibly null <see cref="User"/> object</returns>
+    public async Task<User?> GetUserAsync(string lookupStr, GameMode mode, UserLookup lookup = default)
     {
         AssertLoginData();
         
-        var request = new UserModeRequest(this, userId, mode, lookup);
+        var request = new UserModeRequest(this, lookupStr, mode, lookup);
         return await request.PerformAsync();
     }
 
-    public async Task<User?> GetUserAsync(string userId, UserLookup lookup = default)
+    /// <summary>
+    /// An asynchronous method of retrieving a user from a user lookup
+    /// </summary>
+    /// <param name="lookupStr">The user Id or username</param>
+    /// <param name="lookup">Whether the <see cref="lookupStr"/> is an Id or username</param>
+    /// <returns>A Task containing a possibly null <see cref="User"/> object</returns>
+    public async Task<User?> GetUserAsync(string lookupStr, UserLookup lookup = default)
     {
         AssertLoginData();
 
-        var request = new UserRequest(this, userId, lookup);
+        var request = new UserRequest(this, lookupStr, lookup);
         return await request.PerformAsync();
     }
 }
