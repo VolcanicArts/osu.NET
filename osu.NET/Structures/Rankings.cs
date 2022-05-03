@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace volcanicarts.osu.NET.Structures;
 
-public class Rankings : BaseStructure
+public class Rankings
 {
     [JsonProperty("beatmapsets")]
     public Beatmapset[] Beatmapsets;

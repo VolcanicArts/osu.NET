@@ -9,13 +9,13 @@ using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures;
 
-public class BeatmapCompactArray : BaseStructure
+public class BeatmapCompactArray
 {
     [JsonProperty("beatmaps")]
     public BeatmapCompact[] Beatmaps;
 }
 
-public class BeatmapCompact : BaseStructure
+public class BeatmapCompact
 {
     [JsonProperty("beatmapset_id")]
     public int BeatmapsetId;
@@ -40,11 +40,6 @@ public class BeatmapCompact : BaseStructure
 
     [JsonProperty("version")]
     public string Version;
-
-    public Task<Beatmapset?> GetBeatmapsetAsync()
-    {
-        return OsuClient.GetBeatmapsetAsync(BeatmapsetId.ToString());
-    }
 }
 
 public class Beatmap : BeatmapCompact

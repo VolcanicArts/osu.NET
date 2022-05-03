@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace volcanicarts.osu.NET.Structures;
 
-public class Covers : BaseStructure
+public class Covers
 {
     [JsonProperty("cover")]
     public string Cover { get; private set; }

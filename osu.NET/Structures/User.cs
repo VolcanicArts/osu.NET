@@ -54,7 +54,7 @@ public class Kudosu
     public long Total;
 }
 
-public class UserCompact : BaseStructure
+public class UserCompact
 {
     [JsonProperty("avatar_url")]
     public string AvatarUrl;

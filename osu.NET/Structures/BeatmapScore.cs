@@ -7,7 +7,7 @@ using volcanicarts.osu.NET.Util;
 
 namespace volcanicarts.osu.NET.Structures;
 
-public class BeatmapScores : BaseStructure
+public class BeatmapScores
 {
     [JsonProperty("scores")]
     public BeatmapScore[] Scores;

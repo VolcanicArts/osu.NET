@@ -10,7 +10,7 @@ using volcanicarts.osu.NET.Structures;
 
 namespace volcanicarts.osu.NET.Requests.Osu.API;
 
-public abstract class OsuApiWebRequest<T> : OsuWebRequest where T : BaseStructure
+public abstract class OsuApiWebRequest<T> : OsuWebRequest where T : class
 {
     private readonly OsuClient client;
 
@@ -27,10 +27,7 @@ public abstract class OsuApiWebRequest<T> : OsuWebRequest where T : BaseStructur
         {
             var response = await base.PerformAsync();
             var responseString = await response.Content.ReadAsStringAsync();
-            var deserializedData = JsonConvert.DeserializeObject<T>(responseString);
-            if (deserializedData == null) return null;
-            deserializedData.OsuClient = client;
-            return deserializedData;
+            return JsonConvert.DeserializeObject<T>(responseString);
         }
         catch (WebException)
         {
